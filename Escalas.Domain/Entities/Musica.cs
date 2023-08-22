@@ -5,6 +5,8 @@ namespace Escalas.Domain.Entities;
 
 public class Musica : Entity<int>
 {
+    private Musica() { }
+
     public Musica(string nome, string cantor, string tom)
     {
         Nome = nome;

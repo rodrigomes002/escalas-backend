@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Escalas.Application\Escalas.Application.csproj" />
     <ProjectReference Include="..\Escalas.CrossCutting\Escalas.CrossCutting.csproj" />
-    <ProjectReference Include="..\Escalas.Infra.CrossCutting\Escalas.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>
