@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.API", "Escalas.API\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Domain", "Escalas.Domain\Escalas.Domain.csproj", "{A2C69EF0-5FC4-46E5-85A3-AB71EA5A77F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Infra.Data", "Escalas.Infra.Data\Escalas.Infra.Data.csproj", "{CA064FEF-43F9-4548-95B1-F59337C20EDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Infrastructure", "Escalas.Infrastructure\Escalas.Infrastructure.csproj", "{CA064FEF-43F9-4548-95B1-F59337C20EDC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Application", "Escalas.Application\Escalas.Application.csproj", "{13749658-A851-4D9F-88CF-6EEB762CF92D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Infra.CrossCutting", "Escalas.Infra.CrossCutting\Escalas.Infra.CrossCutting.csproj", "{4435D15B-570C-446E-A8ED-9F578C97EF2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.CrossCutting", "Escalas.CrossCutting\Escalas.CrossCutting.csproj", "{4435D15B-570C-446E-A8ED-9F578C97EF2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

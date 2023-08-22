@@ -1,7 +1,6 @@
-﻿namespace Escalas.Domain.Interfaces
+﻿namespace Escalas.Domain.Interfaces;
+
+public interface IConnectionStringConfiguration
 {
-    public interface IConnectionStringConfiguration
-    {
-        string GetPostgresqlConnectionString();
-    }
+    string? GetPostgresqlConnectionString();
 }
