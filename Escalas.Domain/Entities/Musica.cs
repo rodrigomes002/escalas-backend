@@ -20,7 +20,7 @@ public class Musica : Entity<int>
         );
     }
 
-    public string Nome { get; private set; }
-    public string Cantor { get; private set; }
-    public string Tom { get; private set; }
+    public string Nome { get; set; }
+    public string Cantor { get; set; }
+    public string Tom { get; set; }
 }
