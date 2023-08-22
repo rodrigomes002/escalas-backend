@@ -28,7 +28,7 @@ public class MusicaRepository : IMusicaRepository
             tom = musica.Tom,
         };
 
-        return await conexao.QueryFirstOrDefaultAsync(sql, parametros);
+        return await conexao.QueryFirstOrDefaultAsync<int>(sql, parametros);
     }
 
     public async Task<IEnumerable<Musica>> GetMusicasAsync()

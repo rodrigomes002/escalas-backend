@@ -16,7 +16,7 @@ public class Musica : Entity<int>
         AddNotifications(new Contract<Musica>()
             .Requires()
             .IsNotNullOrWhiteSpace(Nome, nameof(Nome), $"O campo {nameof(Nome)} deve ser preenchido")
-            .IsNotNullOrWhiteSpace(Cantor, nameof(Cantor), $"O campo {nameof(Nome)} deve ser preenchido")
+            .IsNotNullOrWhiteSpace(Cantor, nameof(Cantor), $"O campo {nameof(Cantor)} deve ser preenchido")
         );
     }
 
