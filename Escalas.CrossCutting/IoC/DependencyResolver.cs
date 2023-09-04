@@ -1,12 +1,11 @@
 ﻿using Escalas.Application;
 using Escalas.Application.Interfaces;
-using Escalas.CrossCutting.MapperAssembly;
 using Escalas.Domain.Interfaces;
-using Escalas.Infra.Data.DbConfiguration;
-using Escalas.Infra.Data.Repositories;
+using Escalas.Infrastructure.DbConfiguration;
+using Escalas.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Escalas.Infra.CrossCutting.IoC;
+namespace Escalas.CrossCutting.IoC;
 
 public static class DependencyResolver
 {
@@ -14,7 +13,7 @@ public static class DependencyResolver
     {
         RegisterApplication(services);
         RegisterInfrastructure(services);
-        services.AddAutoMapper(MapperAssembly.GetMapperAssemblies());
+        services.AddAutoMapper(MapperAssembly.MapperAssembly.GetMapperAssemblies());
     }
 
     private static void RegisterApplication(IServiceCollection services)

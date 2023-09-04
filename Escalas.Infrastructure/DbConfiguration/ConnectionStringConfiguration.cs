@@ -1,7 +1,7 @@
 ﻿using Escalas.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
 
-namespace Escalas.Infra.Data.DbConfiguration;
+namespace Escalas.Infrastructure.DbConfiguration;
 
 public class ConnectionStringConfiguration : IConnectionStringConfiguration
 {

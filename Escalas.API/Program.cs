@@ -1,4 +1,4 @@
-using Escalas.Infra.CrossCutting.IoC;
+using Escalas.CrossCutting.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-﻿namespace Escalas.Infra.Data.Scripts;
+﻿namespace Escalas.Infrastructure.Scripts;
 
 public static class MusicaScripts
 {

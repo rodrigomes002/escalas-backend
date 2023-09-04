@@ -1,10 +1,10 @@
 ﻿using Dapper;
 using Escalas.Domain.Entities;
 using Escalas.Domain.Interfaces;
-using Escalas.Infra.Data.Scripts;
+using Escalas.Infrastructure.Scripts;
 using Npgsql;
 
-namespace Escalas.Infra.Data.Repositories;
+namespace Escalas.Infrastructure.Repositories;
 
 public class MusicoRepository : IMusicoRepository
 {
