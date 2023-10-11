@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.Application", "Esca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Escalas.CrossCutting", "Escalas.CrossCutting\Escalas.CrossCutting.csproj", "{4435D15B-570C-446E-A8ED-9F578C97EF2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escalas.Tests", "Escalas.Tests\Escalas.Tests.csproj", "{A5290D90-CC0F-49EE-9DF0-AB4C65974D5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4435D15B-570C-446E-A8ED-9F578C97EF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4435D15B-570C-446E-A8ED-9F578C97EF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4435D15B-570C-446E-A8ED-9F578C97EF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5290D90-CC0F-49EE-9DF0-AB4C65974D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5290D90-CC0F-49EE-9DF0-AB4C65974D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5290D90-CC0F-49EE-9DF0-AB4C65974D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5290D90-CC0F-49EE-9DF0-AB4C65974D5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

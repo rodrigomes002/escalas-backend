@@ -12,4 +12,8 @@ public static class MusicoScripts
             INSERT INTO escalas.tb_musico(nome, id_instrumento)
               VALUES (@nome, @instrumento)
             RETURNING id";
-}
+
+    public const string UpdateMusico = @"
+            UPDATE escalas.tb_musico SET nome=@nome
+                where id=@id";
+}   

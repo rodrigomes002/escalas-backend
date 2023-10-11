@@ -13,6 +13,7 @@ public static class DependencyResolver
     {
         RegisterApplication(services);
         RegisterInfrastructure(services);
+        //alterar para tiny mapper
         services.AddAutoMapper(MapperAssembly.MapperAssembly.GetMapperAssemblies());
     }
 

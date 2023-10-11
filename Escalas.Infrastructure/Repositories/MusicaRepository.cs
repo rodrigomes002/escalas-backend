@@ -15,29 +15,53 @@ public class MusicaRepository : IMusicaRepository
         _connectionStringConfiguration = connectionStringConfiguration;
     }
 
-    public async Task<int> CadastrarMusicaAsync(Musica musica)
+    public async Task<int> AtualizarMusicaAsync(Musica musica)
     {
-        var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
-        var sql = MusicaScripts.InsertMusica;
+        var sql = MusicaScripts.UpdateMusica;
 
-        var parametros = new
+        var parameters = new
         {
             nome = musica.Nome,
             cantor = musica.Cantor,
             tom = musica.Tom,
+            id = musica.Id,
         };
 
-        return await conexao.QueryFirstOrDefaultAsync<int>(sql, parametros);
+        return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);
+    }
+
+    public async Task<int> CadastrarMusicaAsync(Musica musica)
+    {
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        var sql = MusicaScripts.InsertMusica;
+
+        var parameters = new
+        {
+            cantor = musica.Cantor,
+            nome = musica.Nome,
+            tom = musica.Tom
+        };
+
+        return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);
+    }
+
+    public async Task<Musica> GetMusicaByIdAsync(int id)
+    {
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+
+        var sql = MusicaScripts.SelectMusicaById;
+
+        return await conexao.QueryFirstOrDefaultAsync<Musica>(sql, new { id });
     }
 
     public async Task<IEnumerable<Musica>> GetMusicasAsync()
     {
-        var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
         var sql = MusicaScripts.SelectMusicas;
 
-        var musicas = await conexao.QueryAsync<Musica>(sql);
-        return musicas;
+        return await conexao.QueryAsync<Musica>(sql);
     }
 }
