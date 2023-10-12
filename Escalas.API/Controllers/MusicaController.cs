@@ -31,13 +31,12 @@ namespace Escalas.API.Controllers
             Log.Information("{Count} musicas encontradas", result.Object.Count());
 
             return Ok(_mapper.Map<IEnumerable<Musica>, IEnumerable<MusicaModel>>(result.Object));
-
         }
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
-            Log.Information("Buscando musica pelo id");
+            Log.Information("Buscando musica {id}", id);
 
             var result = await _musicaService.GetMusicaByIdAsync(id);
 
@@ -47,7 +46,6 @@ namespace Escalas.API.Controllers
             Log.Information("Musica encontrada", result.Object);
 
             return Ok(_mapper.Map<Musica, MusicaModel>(result.Object));
-
         }
 
         [HttpPost]
@@ -58,7 +56,7 @@ namespace Escalas.API.Controllers
             if (!musica.IsValid)
                 return BadRequest(musica.Notifications);
 
-            Log.Information("Cadastrando musica");
+            Log.Information("Cadastrando musica {Nome}", model.Nome);
 
             var result = await _musicaService.CadastrarMusicaAsync(musica);
 
@@ -68,7 +66,6 @@ namespace Escalas.API.Controllers
             Log.Information("{Nome} inserida com sucesso", musica.Nome);
 
             return Ok(new { id = result.Object });
-
         }
 
         [HttpPut("{id:int}")]
@@ -79,7 +76,7 @@ namespace Escalas.API.Controllers
             if (!musica.IsValid)
                 return BadRequest(musica.Notifications);
 
-            Log.Information("Atualizando musica");
+            Log.Information("Atualizando musica {Nome}", musica.Nome);
 
             var result = await _musicaService.AtualizarMusicaAsync(id, musica);
 
@@ -92,7 +89,6 @@ namespace Escalas.API.Controllers
             Log.Information("{Nome} atualizada com sucesso", musica.Nome);
 
             return Ok(new { id = result.Object });
-
         }
     }
 }

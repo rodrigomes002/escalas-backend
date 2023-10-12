@@ -12,4 +12,14 @@ public class MusicaMock
             new("Todo som", "Resgate", "G")
         };
     }
+
+    public static Musica Musica()
+    {
+        return new("Espelhos mágico", "Oficina G3", "B");
+    }
+
+    public static Musica Musica_Null()
+    {
+        return default!;
+    }
 }

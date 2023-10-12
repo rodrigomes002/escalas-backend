@@ -34,6 +34,33 @@ public class MusicaRepositoryMock : Mock<IMusicaRepository>
         return this;
     }
 
+    public MusicaRepositoryMock UpdateMusicaAsync_Fail()
+    {
+        Setup(repository => repository.AtualizarMusicaAsync(It.IsAny<Musica>()))
+            .ReturnsAsync(0)
+            .Verifiable();
+
+        return this;
+    }
+
+    public MusicaRepositoryMock GetMusicaAsync()
+    {
+        Setup(repository => repository.GetMusicaByIdAsync(It.IsAny<int>()))
+            .ReturnsAsync(MusicaMock.Musica())
+            .Verifiable();
+
+        return this;
+    }
+
+    public MusicaRepositoryMock GetMusicaAsync_Null()
+    {
+        Setup(repository => repository.GetMusicaByIdAsync(It.IsAny<int>()))
+            .ReturnsAsync(MusicaMock.Musica_Null())
+            .Verifiable();
+
+        return this;
+    }
+
     public MusicaRepositoryMock GetMusicasAsync()
     {
         Setup(repository => repository.GetMusicasAsync())
