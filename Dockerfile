@@ -8,7 +8,7 @@ RUN mkdir /output
 COPY . /app
 
 WORKDIR /app/Escalas.API
-RUN dotnet publish --configuration Debug --output /output
+RUN dotnet publish --configuration Release --output /output
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
