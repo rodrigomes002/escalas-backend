@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Escalas.API.Controllers.Base;
 using Escalas.Application.Interfaces;
@@ -24,8 +20,8 @@ namespace Escalas.API.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] UsuarioModel model)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] UsuarioModel model)
         {
             var usuario = _mapper.Map<UsuarioModel, Usuario>(model);
 
@@ -34,12 +30,34 @@ namespace Escalas.API.Controllers
 
             Log.Information("Cadastrando usuario {Nome}", model.Username);
 
-            var result = await _usuarioService.CadastrarUsuarioAsync(usuario);
-
-
+            var result = await _usuarioService.CadastrarAsync(usuario);
+            
+            if (!result.IsValid)
+                return BadRequest(result.Notifications);
+            
             Log.Information("{Nome} inserido com sucesso", usuario.Username);
 
             return Ok(new { id = result.Object });
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UsuarioModel model)
+        {
+            var usuario = _mapper.Map<UsuarioModel, Usuario>(model);
+
+            if (!usuario.IsValid)
+                return BadRequest(usuario.Notifications);
+
+            Log.Information("Realizando login do usuario {Nome}", model.Username);
+
+            var result = await _usuarioService.LoginAsync(usuario);
+
+            if (result.Notfound)
+                return NotFound();
+
+            Log.Information("Login realizado com sucesso");
+
+            return Ok(result);
         }
     }
 }

@@ -8,7 +8,10 @@ namespace Escalas.Application.Mappings
     {
         public UsuarioMap()
         {
-            CreateMap<UsuarioModel, Usuario>();
+            CreateMap<UsuarioModel, Usuario>()
+            .ConstructUsing(x => new Usuario(x.Username, x.Password));
+
+            CreateMap<Usuario, UsuarioModel>();
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Escalas.Domain.Entities
 {
     public class Usuario : Entity<int>
     {
+        public Usuario(){}
         public Usuario(string username, string password)
         {      
             Username = username;
