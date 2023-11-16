@@ -2,6 +2,11 @@ using Escalas.CrossCutting.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var env = builder.Environment.EnvironmentName;
+builder.Configuration.AddJsonFile($"appsettings.{env}.json", false, true);
+
+Console.WriteLine(env);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

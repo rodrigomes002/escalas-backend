@@ -51,7 +51,6 @@ public class MusicoRepository : IMusicoRepository
 
         var sql = MusicoScripts.SelectMusicos;
 
-        var musicos = await conexao.QueryAsync<Musico>(sql);
-        return musicos;
+        return await conexao.QueryAsync<Musico>(sql);
     }
 }

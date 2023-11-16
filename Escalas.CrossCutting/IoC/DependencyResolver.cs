@@ -21,6 +21,7 @@ public static class DependencyResolver
     {
         services.AddScoped<IMusicaApplication, MusicaApplication>();
         services.AddScoped<IMusicoApplication, MusicoApplication>();
+        services.AddScoped<IUsuarioApplication, UsuarioApplication>();
     }
 
     private static void RegisterInfrastructure(IServiceCollection services)
@@ -28,5 +29,6 @@ public static class DependencyResolver
         services.AddScoped<IConnectionStringConfiguration, ConnectionStringConfiguration>();
         services.AddScoped<IMusicaRepository, MusicaRepository>();
         services.AddScoped<IMusicoRepository, MusicoRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
     }
 }
