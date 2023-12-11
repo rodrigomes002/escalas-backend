@@ -3,6 +3,7 @@ using Escalas.API.Controllers.Base;
 using Escalas.Application.Interfaces;
 using Escalas.Application.Models;
 using Escalas.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -21,6 +22,7 @@ namespace Escalas.API.Controllers
             _musicaService = musicaService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -33,6 +35,7 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<IEnumerable<Musica>, IEnumerable<MusicaModel>>(result.Object));
         }
 
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -48,6 +51,7 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<Musica, MusicaModel>(result.Object));
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MusicaModel model)
         {
@@ -68,6 +72,7 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
+        [Authorize]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put([FromBody] MusicaModel model, int id)
         {

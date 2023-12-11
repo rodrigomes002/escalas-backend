@@ -1,7 +1,7 @@
 ﻿namespace Escalas.Infrastructure.Authentication;
 public class JwtOptions
 {
-    public string Issuer { get; set; } = "Escalas_Issuer";
-    public string Audience { get; set; } = "Escalas_Audience";
-    public string SecretKey { get; set; } = "berserkeomelhor@amangajafeito#nomundo";
+    public string Issuer { get; set; } = string.Empty;
+    public string Audience { get; set; } = string.Empty;
+    public string SecretKey { get; set; } = string.Empty;
 }
