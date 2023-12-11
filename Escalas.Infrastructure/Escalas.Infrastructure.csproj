@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Escalas.Application\Escalas.Application.csproj" />
     <ProjectReference Include="..\Escalas.Domain\Escalas.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.SecretsManager" Version="3.7.301.8" />
     <PackageReference Include="Dapper" Version="2.0.143" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Npgsql" Version="7.0.4" />

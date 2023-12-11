@@ -6,10 +6,10 @@ using Serilog;
 
 namespace Escalas.Application;
 
-public class MusicoApplication : IMusicoApplication
+public class MusicosApplication : IMusicosApplication
 {
     private readonly IMusicoRepository _musicaRepository;
-    public MusicoApplication(IMusicoRepository musicaRepository)
+    public MusicosApplication(IMusicoRepository musicaRepository)
     {
         _musicaRepository = musicaRepository;
     }

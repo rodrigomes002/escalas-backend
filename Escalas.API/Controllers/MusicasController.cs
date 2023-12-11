@@ -9,13 +9,13 @@ using Serilog;
 namespace Escalas.API.Controllers
 {
     [ApiController]
-    [Route("api/musica")]
-    public class MusicaController : BaseController
+    [Route("api/musicas")]
+    public class MusicasController : BaseController
     {
         private readonly IMapper _mapper;
-        private readonly IMusicaApplication _musicaService;
+        private readonly IMusicasApplication _musicaService;
 
-        public MusicaController(IMapper mapper, IMusicaApplication musicaService)
+        public MusicasController(IMapper mapper, IMusicasApplication musicaService)
         {
             _mapper = mapper;
             _musicaService = musicaService;

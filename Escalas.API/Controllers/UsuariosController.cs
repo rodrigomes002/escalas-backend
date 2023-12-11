@@ -9,12 +9,12 @@ using Serilog;
 namespace Escalas.API.Controllers
 {
     [ApiController]
-    [Route("api/usuario")]
-    public class UsuarioController : BaseController
+    [Route("api/usuarios")]
+    public class UsuariosController : BaseController
     { 
         private readonly IMapper _mapper;
-        private readonly IUsuarioApplication _usuarioService;
-        public UsuarioController(IMapper mapper, IUsuarioApplication usuarioService)
+        private readonly IUsuariosApplication _usuarioService;
+        public UsuariosController(IMapper mapper, IUsuariosApplication usuarioService)
         {
             _mapper = mapper;
             _usuarioService = usuarioService;

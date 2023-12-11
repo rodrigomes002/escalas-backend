@@ -3,7 +3,7 @@ using Escalas.Domain.Entities;
 
 namespace Escalas.Application.Interfaces;
 
-public interface IMusicoApplication
+public interface IMusicosApplication
 {
     Task<IEnumerable<Musico>> GetMusicosAsync();
     Task CadastrarMusicoAsync(MusicoModel model);

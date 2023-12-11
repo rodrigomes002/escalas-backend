@@ -5,10 +5,10 @@ using Escalas.Domain.Interfaces;
 
 namespace Escalas.Application;
 
-public class MusicaApplication : IMusicaApplication
+public class MusicasApplication : IMusicasApplication
 {
     private readonly IMusicaRepository _musicaRepository;
-    public MusicaApplication(IMusicaRepository musicaRepository)
+    public MusicasApplication(IMusicaRepository musicaRepository)
     {
         _musicaRepository = musicaRepository;
     }
