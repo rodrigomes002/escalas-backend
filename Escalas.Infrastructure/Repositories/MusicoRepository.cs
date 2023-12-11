@@ -17,7 +17,7 @@ public class MusicoRepository : IMusicoRepository
 
     public async Task AtualizarMusicoAsync(int id, Musico musico)
     {
-        using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        using var conexao = new NpgsqlConnection(await _connectionStringConfiguration.GetConnectionString(readOnly: false));
         
         var sql = MusicoScripts.UpdateMusico;
 
@@ -27,7 +27,7 @@ public class MusicoRepository : IMusicoRepository
 
     public async Task CadastrarMusicoAsync(Musico musico)
     {
-       using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+       using var conexao = new NpgsqlConnection(await _connectionStringConfiguration.GetConnectionString(readOnly: false));
 
         var sql = MusicoScripts.SelectMusicos;
 
@@ -47,7 +47,7 @@ public class MusicoRepository : IMusicoRepository
 
     public async Task<IEnumerable<Musico>> GetMusicosAsync()
     {
-        using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        using var conexao = new NpgsqlConnection(await _connectionStringConfiguration.GetConnectionString(readOnly: true));
 
         var sql = MusicoScripts.SelectMusicos;
 

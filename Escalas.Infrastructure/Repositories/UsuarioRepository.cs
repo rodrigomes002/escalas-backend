@@ -17,7 +17,7 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<int> CadastrarAsync(Usuario usuario)
     {
-     await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+     await using var conexao = new NpgsqlConnection(await _connectionStringConfiguration.GetConnectionString(readOnly: true));
 
         var sql = UsuarioScripts.InsertUsuario;
 
@@ -34,7 +34,7 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<Usuario> GetUsuarioByUsernameAsync(string username)
     {
-        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        await using var conexao = new NpgsqlConnection(await _connectionStringConfiguration.GetConnectionString(readOnly: true));
 
         var sql = UsuarioScripts.SelectUsuario;
 

@@ -2,5 +2,7 @@
 
 public interface IConnectionStringConfiguration
 {
-    string? GetPostgresqlConnectionString();
+    Task<string> GetConnectionString(bool readOnly);
+    Task CreateConnectionString();
+    Task CreateReadOnlyConnectionString();
 }
