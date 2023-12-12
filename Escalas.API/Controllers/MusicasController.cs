@@ -9,6 +9,7 @@ using Serilog;
 
 namespace Escalas.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/musicas")]
     public class MusicasController : BaseController
@@ -22,7 +23,6 @@ namespace Escalas.API.Controllers
             _musicaService = musicaService;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -35,7 +35,6 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<IEnumerable<Musica>, IEnumerable<MusicaModel>>(result.Object));
         }
 
-        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -51,7 +50,6 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<Musica, MusicaModel>(result.Object));
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MusicaModel model)
         {
@@ -72,7 +70,6 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
-        [Authorize]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put([FromBody] MusicaModel model, int id)
         {
@@ -92,6 +89,24 @@ namespace Escalas.API.Controllers
                 return BadRequest(result.Notifications);
 
             Log.Information("{Nome} atualizada com sucesso", musica.Nome);
+
+            return Ok(new { id = result.Object });
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Log.Information("Deletando musica {id}", id);
+
+            var result = await _musicaService.DeletarMusicaAsync(id);
+
+            if (result.Notfound)
+                return NotFound();
+
+            if (!result.Success)
+                return BadRequest(result.Notifications);
+
+            Log.Information("{id} deletado com sucesso", id);
 
             return Ok(new { id = result.Object });
         }

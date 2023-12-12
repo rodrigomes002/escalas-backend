@@ -30,4 +30,8 @@ public static class MusicaScripts
                 where id=@id
             RETURNING id";
 
+    public const string DeleteMusica = @"
+            DELETE FROM escalas.tb_musica
+                where id=@id";
+
 }

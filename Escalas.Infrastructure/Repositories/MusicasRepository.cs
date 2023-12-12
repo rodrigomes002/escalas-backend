@@ -6,11 +6,11 @@ using Npgsql;
 
 namespace Escalas.Infrastructure.Repositories;
 
-public class MusicaRepository : IMusicaRepository
+public class MusicasRepository : IMusicasRepository
 {
     private readonly IConnectionStringConfiguration _connectionStringConfiguration;
 
-    public MusicaRepository(IConnectionStringConfiguration connectionStringConfiguration)
+    public MusicasRepository(IConnectionStringConfiguration connectionStringConfiguration)
     {
         _connectionStringConfiguration = connectionStringConfiguration;
     }
@@ -45,6 +45,15 @@ public class MusicaRepository : IMusicaRepository
         };
 
         return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);
+    }
+
+    public async Task<int> DeletarMusicaAsync(int id)
+    {
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+
+        var sql = MusicaScripts.DeleteMusica;
+
+        return await conexao.ExecuteAsync(sql, new { id });
     }
 
     public async Task<Musica> GetMusicaByIdAsync(int id)

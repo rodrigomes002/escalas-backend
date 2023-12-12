@@ -199,9 +199,9 @@ public class MusicaControllerTest
 
     #endregion
 
-    private MusicasController CreateController(Mock<IMusicaRepository>? mockMusicaRepository = null)
+    private MusicasController CreateController(Mock<IMusicasRepository>? mockMusicaRepository = null)
     {
-        var musicaRepositoryMock = mockMusicaRepository ?? new Mock<IMusicaRepository>();
+        var musicaRepositoryMock = mockMusicaRepository ?? new Mock<IMusicasRepository>();
         var musicaApplication = new MusicasApplication(musicaRepositoryMock.Object);
 
         return new MusicasController(_mapperFixture.Mapper, musicaApplication);

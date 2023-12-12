@@ -2,6 +2,7 @@
 using Escalas.Application.Interfaces;
 using Escalas.Domain.Interfaces;
 using Escalas.Infrastructure.Authentication;
+using Escalas.Infrastructure.Cryptography;
 using Escalas.Infrastructure.DbConfiguration;
 using Escalas.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,13 +25,14 @@ public static class DependencyResolver
         services.AddScoped<IMusicosApplication, MusicosApplication>();
         services.AddScoped<IUsuariosApplication, UsuariosApplication>();
         services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddSingleton<ICryptographyProvider, CryptographyProvider>();
     }
 
     private static void RegisterInfrastructure(IServiceCollection services)
     {
         services.AddScoped<IConnectionStringConfiguration, ConnectionStringConfiguration>();
-        services.AddScoped<IMusicaRepository, MusicaRepository>();
-        services.AddScoped<IMusicoRepository, MusicoRepository>();
-        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IMusicasRepository, MusicasRepository>();
+        services.AddScoped<IMusicosRepository, MusicosRepository>();
+        services.AddScoped<IUsuariosRepository, UsuariosRepository>();
     }
 }

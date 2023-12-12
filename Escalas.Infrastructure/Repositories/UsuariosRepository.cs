@@ -6,18 +6,18 @@ using Npgsql;
 
 namespace Escalas.Infrastructure.Repositories;
 
-public class UsuarioRepository : IUsuarioRepository
+public class UsuariosRepository : IUsuariosRepository
 {
     private readonly IConnectionStringConfiguration _connectionStringConfiguration;
 
-    public UsuarioRepository(IConnectionStringConfiguration connectionStringConfiguration)
+    public UsuariosRepository(IConnectionStringConfiguration connectionStringConfiguration)
     {
         _connectionStringConfiguration = connectionStringConfiguration;
     }
 
     public async Task<int> CadastrarAsync(Usuario usuario)
     {
-     await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
         var sql = UsuarioScripts.InsertUsuario;
 
@@ -38,7 +38,7 @@ public class UsuarioRepository : IUsuarioRepository
 
         var sql = UsuarioScripts.SelectUsuario;
 
-        var parametros = new 
+        var parametros = new
         {
             username = username
         };

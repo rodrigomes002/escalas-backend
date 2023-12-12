@@ -7,8 +7,8 @@ namespace Escalas.Application;
 
 public class MusicasApplication : IMusicasApplication
 {
-    private readonly IMusicaRepository _musicaRepository;
-    public MusicasApplication(IMusicaRepository musicaRepository)
+    private readonly IMusicasRepository _musicaRepository;
+    public MusicasApplication(IMusicasRepository musicaRepository)
     {
         _musicaRepository = musicaRepository;
     }
@@ -37,6 +37,24 @@ public class MusicasApplication : IMusicasApplication
 
         if (result <= 0)
             return Result<int>.Error("Erro ao cadastrar uma música");
+
+        return Result<int>.Ok(result);
+    }
+
+    public async Task<Result<int>> DeletarMusicaAsync(int id)
+    {
+        if (id == 0)
+            return Result<int>.Error("É necessário especificar um Id");
+
+        var musicadb = await _musicaRepository.GetMusicaByIdAsync(id);
+
+        if (musicadb is null)
+            return Result<int>.NotFoundResult();
+
+        var result = await _musicaRepository.DeletarMusicaAsync(id);
+
+        if (result <= 0)
+            return Result<int>.Error("Erro ao deletar uma música");
 
         return Result<int>.Ok(result);
     }
