@@ -11,11 +11,11 @@ using Moq;
 namespace Escalas.Tests.Controllers;
 
 [Collection("Mapper")]
-public class MusicaControllerTest
+public class MusicasControllerTest
 {
     private readonly MapperFixture _mapperFixture;
 
-    public MusicaControllerTest(MapperFixture mapperFixture)
+    public MusicasControllerTest(MapperFixture mapperFixture)
     {
         _mapperFixture = mapperFixture;
     }
@@ -24,7 +24,7 @@ public class MusicaControllerTest
 
     [Theory]
     [MemberData(nameof(Post_Success))]
-    public async Task Post_Success_Test(MusicaModel model, MusicaRepositoryMock repositoryMock)
+    public async Task Post_Success_Test(MusicaModel model, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Post(model);
@@ -37,13 +37,13 @@ public class MusicaControllerTest
         yield return new object[]
         {
             MusicaModelMock.FullObject(),
-            new MusicaRepositoryMock().CreateMusicaAsync()
+            new MusicasRepositoryMock().CreateMusicaAsync()
         };
     }
 
     [Theory]
     [MemberData(nameof(Post_BadRequest))]
-    public async Task Post_BadRequest_Test(MusicaModel model, MusicaRepositoryMock repositoryMock)
+    public async Task Post_BadRequest_Test(MusicaModel model, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Post(model);
@@ -56,13 +56,13 @@ public class MusicaControllerTest
         yield return new object[]
         {
             MusicaModelMock.EmptyName(),
-            new MusicaRepositoryMock().CreateMusicaAsync()
+            new MusicasRepositoryMock().CreateMusicaAsync()
         };
 
         yield return new object[]
         {
             MusicaModelMock.FullObject(),
-            new MusicaRepositoryMock().CreateMusicaAsync_Fail()
+            new MusicasRepositoryMock().CreateMusicaAsync_Fail()
         };
     }
 
@@ -73,7 +73,7 @@ public class MusicaControllerTest
 
     [Theory]
     [MemberData(nameof(Put_Success))]
-    public async Task Put_Success_Test(MusicaModel model, int id, MusicaRepositoryMock repositoryMock)
+    public async Task Put_Success_Test(MusicaModel model, int id, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Put(model, id);
@@ -87,7 +87,7 @@ public class MusicaControllerTest
         {
             MusicaModelMock.FullObject(),
             1,
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .UpdateMusicaAsync()
             .GetMusicaAsync()
         };
@@ -95,7 +95,7 @@ public class MusicaControllerTest
 
     [Theory]
     [MemberData(nameof(Put_NotFound))]
-    public async Task Put_NotFound_Test(MusicaModel model, int id, MusicaRepositoryMock repositoryMock)
+    public async Task Put_NotFound_Test(MusicaModel model, int id, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Put(model, id);
@@ -109,7 +109,7 @@ public class MusicaControllerTest
         {
             MusicaModelMock.FullObject(),
             1,
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .UpdateMusicaAsync()
             .GetMusicaAsync_Null()
         };
@@ -117,7 +117,7 @@ public class MusicaControllerTest
 
     [Theory]
     [MemberData(nameof(Put_BadRequest))]
-    public async Task Put_BadRequest_Test(MusicaModel model, int id, MusicaRepositoryMock repositoryMock)
+    public async Task Put_BadRequest_Test(MusicaModel model, int id, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Put(model, id);
@@ -131,7 +131,7 @@ public class MusicaControllerTest
         {
             MusicaModelMock.EmptyName(),
             1,
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .UpdateMusicaAsync()
             .GetMusicaAsync()
         };
@@ -143,7 +143,7 @@ public class MusicaControllerTest
 
     [Theory]
     [MemberData(nameof(Get_Success))]
-    public async Task Get_Success_Test(MusicaRepositoryMock repositoryMock)
+    public async Task Get_Success_Test(MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Get();
@@ -154,14 +154,14 @@ public class MusicaControllerTest
     {
         yield return new object[]
         {
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .GetMusicasAsync()
         };
     }
 
     [Theory]
     [MemberData(nameof(Get_Musica_Success))]
-    public async Task Get_Musica_Success_Test(int id, MusicaRepositoryMock repositoryMock)
+    public async Task Get_Musica_Success_Test(int id, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Get(id);
@@ -173,14 +173,14 @@ public class MusicaControllerTest
         yield return new object[]
         {
             1,
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .GetMusicaAsync()
         };
     }
 
     [Theory]
     [MemberData(nameof(Get_Musica_NotFound))]
-    public async Task Get_Musica_NotFound_Test(int id, MusicaRepositoryMock repositoryMock)
+    public async Task Get_Musica_NotFound_Test(int id, MusicasRepositoryMock repositoryMock)
     {
         var controller = CreateController(repositoryMock);
         var result = await controller.Get(id);
@@ -192,7 +192,7 @@ public class MusicaControllerTest
         yield return new object[]
         {
             1,
-            new MusicaRepositoryMock()
+            new MusicasRepositoryMock()
             .GetMusicaAsync_Null()
         };
     }

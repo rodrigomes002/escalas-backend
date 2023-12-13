@@ -5,9 +5,9 @@ using Moq;
 
 namespace Escalas.Tests.Mocks;
 
-public class MusicaRepositoryMock : Mock<IMusicasRepository>
+public class MusicasRepositoryMock : Mock<IMusicasRepository>
 {
-    public MusicaRepositoryMock CreateMusicaAsync()
+    public MusicasRepositoryMock CreateMusicaAsync()
     {
         Setup(repository => repository.CadastrarMusicaAsync(It.IsAny<Musica>()))
             .ReturnsAsync(1)
@@ -16,7 +16,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock CreateMusicaAsync_Fail()
+    public MusicasRepositoryMock CreateMusicaAsync_Fail()
     {
         Setup(repository => repository.CadastrarMusicaAsync(It.IsAny<Musica>()))
             .ReturnsAsync(0)
@@ -25,7 +25,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock UpdateMusicaAsync()
+    public MusicasRepositoryMock UpdateMusicaAsync()
     {
         Setup(repository => repository.AtualizarMusicaAsync(It.IsAny<Musica>()))
             .ReturnsAsync(1)
@@ -34,7 +34,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock UpdateMusicaAsync_Fail()
+    public MusicasRepositoryMock UpdateMusicaAsync_Fail()
     {
         Setup(repository => repository.AtualizarMusicaAsync(It.IsAny<Musica>()))
             .ReturnsAsync(0)
@@ -43,7 +43,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock GetMusicaAsync()
+    public MusicasRepositoryMock GetMusicaAsync()
     {
         Setup(repository => repository.GetMusicaByIdAsync(It.IsAny<int>()))
             .ReturnsAsync(MusicaMock.Musica())
@@ -52,7 +52,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock GetMusicaAsync_Null()
+    public MusicasRepositoryMock GetMusicaAsync_Null()
     {
         Setup(repository => repository.GetMusicaByIdAsync(It.IsAny<int>()))
             .ReturnsAsync(MusicaMock.Musica_Null())
@@ -61,7 +61,7 @@ public class MusicaRepositoryMock : Mock<IMusicasRepository>
         return this;
     }
 
-    public MusicaRepositoryMock GetMusicasAsync()
+    public MusicasRepositoryMock GetMusicasAsync()
     {
         Setup(repository => repository.GetMusicasAsync())
             .ReturnsAsync(MusicaMock.Musicas())
