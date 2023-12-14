@@ -2,7 +2,6 @@
 using Escalas.Application.Models.Result;
 using Escalas.Domain.Entities;
 using Escalas.Domain.Interfaces;
-using Serilog;
 
 namespace Escalas.Application;
 
