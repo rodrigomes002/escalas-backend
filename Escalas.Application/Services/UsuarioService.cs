@@ -5,14 +5,14 @@ using Escalas.Domain.Entities;
 using Escalas.Domain.Interfaces;
 using Serilog;
 
-namespace Escalas.Application;
+namespace Escalas.Application.Services;
 
-public class UsuariosApplication : IUsuariosApplication
+public class UsuarioService : IUsuariosService
 {
     private readonly IJwtProvider _jwtProvider;
-    private readonly IUsuariosRepository _usuarioRepository;
+    private readonly IUsuarioRepository _usuarioRepository;
     private readonly ICryptographyProvider _cryptographyProvider;
-    public UsuariosApplication(IJwtProvider jwtProvider, IUsuariosRepository usuarioRepository, ICryptographyProvider cryptographyProvider)
+    public UsuarioService(IJwtProvider jwtProvider, IUsuarioRepository usuarioRepository, ICryptographyProvider cryptographyProvider)
     {
         _jwtProvider = jwtProvider;
         _usuarioRepository = usuarioRepository;

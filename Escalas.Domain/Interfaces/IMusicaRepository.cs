@@ -2,7 +2,7 @@
 
 namespace Escalas.Domain.Interfaces;
 
-public interface IMusicasRepository
+public interface IMusicaRepository
 {
     Task<IEnumerable<Musica>> GetMusicasAsync();
     Task<Musica> GetMusicaByIdAsync(int id);

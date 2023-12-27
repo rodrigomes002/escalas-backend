@@ -1,6 +1,6 @@
 ﻿using Escalas.API.Controllers;
-using Escalas.Application;
 using Escalas.Application.Models;
+using Escalas.Application.Services;
 using Escalas.Domain.Interfaces;
 using Escalas.Tests.Fixture;
 using Escalas.Tests.Mocks;
@@ -199,10 +199,10 @@ public class MusicasControllerTest
 
     #endregion
 
-    private MusicasController CreateController(Mock<IMusicasRepository>? mockMusicaRepository = null)
+    private MusicasController CreateController(Mock<IMusicaRepository>? mockMusicaRepository = null)
     {
-        var musicaRepositoryMock = mockMusicaRepository ?? new Mock<IMusicasRepository>();
-        var musicaApplication = new MusicasApplication(musicaRepositoryMock.Object);
+        var musicaRepositoryMock = mockMusicaRepository ?? new Mock<IMusicaRepository>();
+        var musicaApplication = new MusicaService(musicaRepositoryMock.Object);
 
         return new MusicasController(_mapperFixture.Mapper, musicaApplication);
     }

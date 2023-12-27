@@ -4,7 +4,7 @@ using Escalas.Domain.Entities;
 
 namespace Escalas.Application.Interfaces
 {
-    public interface IUsuariosApplication
+    public interface IUsuariosService
     {
         Task<Result<int>> CadastrarAsync(Usuario usuario);
         Task<Result<UsuarioTokenModel>> LoginAsync(Usuario usuario);

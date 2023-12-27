@@ -15,9 +15,9 @@ namespace Escalas.API.Controllers
     public class MusicasController : BaseController
     {
         private readonly IMapper _mapper;
-        private readonly IMusicasApplication _musicaService;
+        private readonly IMusicasService _musicaService;
 
-        public MusicasController(IMapper mapper, IMusicasApplication musicaService)
+        public MusicasController(IMapper mapper, IMusicasService musicaService)
         {
             _mapper = mapper;
             _musicaService = musicaService;

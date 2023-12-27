@@ -5,7 +5,7 @@ using Moq;
 
 namespace Escalas.Tests.Mocks;
 
-public class MusicasRepositoryMock : Mock<IMusicasRepository>
+public class MusicasRepositoryMock : Mock<IMusicaRepository>
 {
     public MusicasRepositoryMock CreateMusicaAsync()
     {

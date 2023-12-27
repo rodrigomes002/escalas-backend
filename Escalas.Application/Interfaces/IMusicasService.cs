@@ -4,7 +4,7 @@ using Escalas.Domain.Entities;
 
 namespace Escalas.Application.Interfaces;
 
-public interface IMusicasApplication
+public interface IMusicasService
 {
     Task<Result<IEnumerable<Musica>>> GetMusicasAsync();
     Task<Result<Musica>> GetMusicaByIdAsync(int id);

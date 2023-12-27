@@ -6,11 +6,11 @@ using Npgsql;
 
 namespace Escalas.Infrastructure.Repositories;
 
-public class MusicasRepository : IMusicasRepository
+public class MusicaRepository : IMusicaRepository
 {
     private readonly IConnectionStringConfiguration _connectionStringConfiguration;
 
-    public MusicasRepository(IConnectionStringConfiguration connectionStringConfiguration)
+    public MusicaRepository(IConnectionStringConfiguration connectionStringConfiguration)
     {
         _connectionStringConfiguration = connectionStringConfiguration;
     }

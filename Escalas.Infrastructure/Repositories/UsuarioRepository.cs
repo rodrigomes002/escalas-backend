@@ -6,11 +6,11 @@ using Npgsql;
 
 namespace Escalas.Infrastructure.Repositories;
 
-public class UsuariosRepository : IUsuariosRepository
+public class UsuarioRepository : IUsuarioRepository
 {
     private readonly IConnectionStringConfiguration _connectionStringConfiguration;
 
-    public UsuariosRepository(IConnectionStringConfiguration connectionStringConfiguration)
+    public UsuarioRepository(IConnectionStringConfiguration connectionStringConfiguration)
     {
         _connectionStringConfiguration = connectionStringConfiguration;
     }

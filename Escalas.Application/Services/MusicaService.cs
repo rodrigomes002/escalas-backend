@@ -3,12 +3,12 @@ using Escalas.Application.Models.Result;
 using Escalas.Domain.Entities;
 using Escalas.Domain.Interfaces;
 
-namespace Escalas.Application;
+namespace Escalas.Application.Services;
 
-public class MusicasApplication : IMusicasApplication
+public class MusicaService : IMusicasService
 {
-    private readonly IMusicasRepository _musicaRepository;
-    public MusicasApplication(IMusicasRepository musicaRepository)
+    private readonly IMusicaRepository _musicaRepository;
+    public MusicaService(IMusicaRepository musicaRepository)
     {
         _musicaRepository = musicaRepository;
     }

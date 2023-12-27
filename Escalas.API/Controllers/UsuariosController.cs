@@ -13,8 +13,8 @@ namespace Escalas.API.Controllers
     public class UsuariosController : BaseController
     { 
         private readonly IMapper _mapper;
-        private readonly IUsuariosApplication _usuarioService;
-        public UsuariosController(IMapper mapper, IUsuariosApplication usuarioService)
+        private readonly IUsuariosService _usuarioService;
+        public UsuariosController(IMapper mapper, IUsuariosService usuarioService)
         {
             _mapper = mapper;
             _usuarioService = usuarioService;
