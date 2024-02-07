@@ -16,19 +16,22 @@ namespace Escalas.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IMusicasService _musicaService;
+        private readonly IMusicosService _musicoService;
 
-        public MusicasController(IMapper mapper, IMusicasService musicaService)
+        public MusicasController(IMapper mapper, IMusicasService musicaService, IMusicosService musicoService)
         {
             _mapper = mapper;
             _musicaService = musicaService;
+            _musicoService = musicoService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            Log.Information("Buscando musicas");
+            Log.Information("Buscando musicas ");
 
             var result = await _musicaService.GetMusicasAsync();
+            var result2 = await _musicoService.GetMusicosAsync();
 
             Log.Information("{Count} musicas encontradas", result.Object.Count());
 
