@@ -50,8 +50,6 @@ namespace Escalas.API.Controllers
 
             Log.Information("Musica encontrada", result.Object);
 
-            Console.WriteLine("Olá");
-
             return Ok(_mapper.Map<Musica, MusicaModel>(result.Object));
         }
 
@@ -66,8 +64,6 @@ namespace Escalas.API.Controllers
             Log.Information("Cadastrando musica {Nome}", model.Nome);
 
             var result = await _musicaService.CadastrarMusicaAsync(musica);
-
-            Console.WriteLine("Oi");
 
             if (!result.Success)
                 return BadRequest(result.Notifications);
