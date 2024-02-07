@@ -47,6 +47,8 @@ namespace Escalas.API.Controllers
 
             Log.Information("Musica encontrada", result.Object);
 
+            Console.WriteLine("Olá");
+
             return Ok(_mapper.Map<Musica, MusicaModel>(result.Object));
         }
 
