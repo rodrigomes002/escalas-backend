@@ -28,7 +28,7 @@ namespace Escalas.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            Log.Information("Buscando musicas ");
+            Log.Information("Buscando musicas");
 
             var result = await _musicaService.GetMusicasAsync();
             var result2 = await _musicoService.GetMusicosAsync();
