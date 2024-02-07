@@ -62,6 +62,8 @@ namespace Escalas.API.Controllers
 
             var result = await _musicaService.CadastrarMusicaAsync(musica);
 
+            Console.WriteLine("Oi");
+
             if (!result.Success)
                 return BadRequest(result.Notifications);
 
