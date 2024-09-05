@@ -1,4 +1,5 @@
 ﻿using Escalas.Application.Interfaces;
+using Escalas.Application.Models;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -9,9 +10,9 @@ public class CryptographyProvider : ICryptographyProvider
     const int iterations = 350000;
     HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
-    public string HashPasword(string password, out byte[] salt)
+    public AuthModel HashPasword(string password)
     {
-        salt = RandomNumberGenerator.GetBytes(keySize);
+        var salt = RandomNumberGenerator.GetBytes(keySize);
         var hash = Rfc2898DeriveBytes.Pbkdf2(
             Encoding.UTF8.GetBytes(password),
         salt,
@@ -19,7 +20,13 @@ public class CryptographyProvider : ICryptographyProvider
             hashAlgorithm,
             keySize);
 
-        return Convert.ToHexString(hash);
+        var auth = new AuthModel()
+        {
+            Hash = Convert.ToHexString(hash),
+            Salt = salt
+        };
+
+        return auth;
     }
 
     public bool VerifyPassword(string password, string hash, byte[] salt)
