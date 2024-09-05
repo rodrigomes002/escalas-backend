@@ -1,6 +1,8 @@
-﻿namespace Escalas.Application.Interfaces;
+﻿using Escalas.Application.Models;
+
+namespace Escalas.Application.Interfaces;
 public interface ICryptographyProvider
 {
-    string HashPasword(string password, out byte[] salt);
+    AuthModel HashPasword(string password);
     bool VerifyPassword(string password, string hash, byte[] salt);
 }

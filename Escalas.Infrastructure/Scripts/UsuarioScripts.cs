@@ -12,8 +12,8 @@ namespace Escalas.Infrastructure.Scripts
           WHERE username = @username";
 
     public const string InsertUsuario = @"
-    INSERT INTO services.tb_usuario(username, password_hash, password_salt, created)
-	VALUES (@username, @password_hash, @password_salt, @created)           
+    INSERT INTO services.tb_usuario(username, password, password_hash, password_salt, created)
+	VALUES (@username, @password, @password_hash, @password_salt, @created)           
      RETURNING id";  
     }
 }

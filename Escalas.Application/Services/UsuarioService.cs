@@ -23,9 +23,9 @@ public class UsuarioService : IUsuariosService
     {
         Log.Information("Cadastrando usuario");
 
-        var hash = _cryptographyProvider.HashPasword(usuario.Password, out var salt);
-        usuario.PasswordHash = hash;
-        usuario.PasswordSalt = salt;
+        var auth = _cryptographyProvider.HashPasword(usuario.Password);
+        usuario.PasswordHash = auth.Hash;
+        usuario.PasswordSalt = auth.Salt;
 
         var result = await _usuarioRepository.CadastrarAsync(usuario);
 
