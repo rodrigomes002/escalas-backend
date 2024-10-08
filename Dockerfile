@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 RUN mkdir /output
@@ -11,7 +11,7 @@ WORKDIR /app/Escalas.API
 RUN dotnet publish --configuration Release --output /output
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 ENV ASPNETCORE_URLS http://*:5001
 
