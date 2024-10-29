@@ -25,7 +25,7 @@ namespace Escalas.Infrastructure.Repositories
             var parametros = new
             {
                 Id = escala.Id,
-                Data = escala.Data,
+                Data = escala.Data.Date,
                 Turno = escala.Turno,
                 Repertorio = escala.RepertorioJson,
                 Participantes = escala.ParticipantesJson
@@ -42,7 +42,7 @@ namespace Escalas.Infrastructure.Repositories
 
             var parametros = new
             {
-                Data = escala.Data,
+                Data = escala.Data.Date,
                 Turno = escala.Turno,
                 Repertorio = escala.RepertorioJson,
                 Participantes = escala.ParticipantesJson
