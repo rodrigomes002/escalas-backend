@@ -23,6 +23,7 @@ public static class DependencyResolver
     {
         services.AddScoped<IMusicasService, MusicaService>();
         services.AddScoped<IMusicosService, MusicoService>();
+        services.AddScoped<IEscalaService, EscalaService>();
         services.AddScoped<IUsuariosService, UsuarioService>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddSingleton<ICryptographyProvider, CryptographyProvider>();
@@ -33,6 +34,7 @@ public static class DependencyResolver
         services.AddScoped<IConnectionStringConfiguration, ConnectionStringConfiguration>();
         services.AddScoped<IMusicaRepository, MusicaRepository>();
         services.AddScoped<IMusicoRepository, MusicoRepository>();
+        services.AddScoped<IEscalaRepository, EscalaRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
     }
 }
