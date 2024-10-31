@@ -7,7 +7,7 @@ RUN mkdir /output
 
 COPY . /app
 
-WORKDIR /app/Escalas.API
+WORKDIR /app
 RUN dotnet publish --configuration Release --output /output
 
 # Build runtime image
