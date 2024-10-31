@@ -16,13 +16,13 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 # Definir a variável de ambiente TZ
 ENV TZ=America/Sao_Paulo
 
-ENV ASPNETCORE_URLS http://*:5001
+ENV ASPNETCORE_URLS http://*:80
 
 WORKDIR /app
 
 ENV ASPNETCORE_ENVIRONMENT=Development
 
 COPY --from=build-env /output .
-EXPOSE 5001
+EXPOSE 80
 
 ENTRYPOINT ["dotnet", "Escalas.API.dll"]
