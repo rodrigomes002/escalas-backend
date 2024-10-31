@@ -13,7 +13,7 @@ var connectionString = configuration["Database:Postgresql"];
 
 var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
 
-connectionString = connectionString.Replace("{PASSWORD_DB}", passwordDb);
+connectionString = connectionString.Replace("PASSWORD_DB", passwordDb);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
