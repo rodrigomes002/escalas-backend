@@ -6,8 +6,14 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var env = builder.Environment.EnvironmentName;
-builder.Configuration.AddJsonFile($"appsettings.{env}.json", false, true);
+builder.Configuration.AddJsonFile($"appsettings.json", false, true);
+
+var configuration = builder.Configuration;
+var connectionString = configuration["Database:Postgresql"];
+
+var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
+
+connectionString = connectionString.Replace("{PASSWORD_DB}", passwordDb);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -75,8 +81,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
