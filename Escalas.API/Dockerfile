@@ -5,7 +5,7 @@ RUN mkdir /output
 
 # Copy project and publish
 
-COPY ./Escalas.API /app
+COPY . /app
 
 WORKDIR /app/Escalas.API
 RUN dotnet publish --configuration Release --output /output
