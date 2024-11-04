@@ -24,7 +24,6 @@ public class UsuarioRepository : IUsuarioRepository
         var parametros = new
         {
             username = usuario.Username,
-            password = usuario.Password,
             password_hash = usuario.PasswordHash,
             password_salt = usuario.PasswordSalt,
             created = usuario.Created,
