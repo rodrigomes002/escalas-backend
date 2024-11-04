@@ -3,11 +3,13 @@ using Escalas.API.Controllers.Base;
 using Escalas.Application.Interfaces;
 using Escalas.Application.Models;
 using Escalas.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace Escalas.API.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/usuarios")]
     public class UsuariosController : BaseController
