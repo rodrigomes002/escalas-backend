@@ -14,6 +14,10 @@ public class ConnectionStringConfiguration : IConnectionStringConfiguration
 
     public string? GetPostgresqlConnectionString()
     {
-        return _configuration["Database:Postgresql"];
+        var connectionString = _configuration["Database:Postgresql"];
+
+        var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
+
+        return connectionString.Replace("PASSWORD_DB", passwordDb);
     }
 }

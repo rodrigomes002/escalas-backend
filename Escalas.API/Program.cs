@@ -8,13 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile($"appsettings.json", false, true);
 
-var configuration = builder.Configuration;
-var connectionString = configuration["Database:Postgresql"];
-
-var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
-
-connectionString = connectionString.Replace("PASSWORD_DB", passwordDb);
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDependencyResolver();
