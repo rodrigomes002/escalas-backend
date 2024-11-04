@@ -18,6 +18,8 @@ public class ConnectionStringConfiguration : IConnectionStringConfiguration
 
         var passwordDb = Environment.GetEnvironmentVariable("PASSWORD_DB");
 
-        return connectionString.Replace("PASSWORD_DB", passwordDb);
+        connectionString = connectionString.Replace("PASSWORD_DB", passwordDb);
+
+        return connectionString;
     }
 }
