@@ -20,7 +20,7 @@ public class MusicaRepository : IMusicaRepository
         await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
         var sql = MusicaScripts.UpdateMusica;
-
+        
         var parameters = new
         {
             nome = musica.Nome,

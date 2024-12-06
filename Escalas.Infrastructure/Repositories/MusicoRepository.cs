@@ -23,8 +23,9 @@ public class MusicoRepository : IMusicoRepository
 
         var parameters = new
         {
-            nome = musico.Nome,
             id = musico.Id,
+            nome = musico.Nome,
+            instrumento = musico.Instrumento,
         };
 
         return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);
@@ -51,7 +52,7 @@ public class MusicoRepository : IMusicoRepository
 
         var sql = MusicoScripts.DeleteMusico;
 
-        return await conexao.QueryFirstOrDefaultAsync(sql, new { id });
+        return await conexao.ExecuteAsync(sql, new { id });
     }
     public async Task<Musico> GetMusicoByIdAsync(int id)
     {
