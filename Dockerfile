@@ -3,25 +3,21 @@ WORKDIR /app
 
 RUN mkdir /output
 
-# Copy project and publish
-
 COPY . /app
 
 WORKDIR /app/Escalas.API
 RUN dotnet publish --configuration Release --output /output
 
-# Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
-# Definir a variável de ambiente TZ
 ENV TZ=America/Sao_Paulo
-ENV ASPNETCORE_URLS http://*:80
+ENV ASPNETCORE_URLS http://*:5001
 
 WORKDIR /app
 
 ENV ASPNETCORE_ENVIRONMENT=Development
 
 COPY --from=build-env /output .
-EXPOSE 80
+EXPOSE 5001
 
 ENTRYPOINT ["dotnet", "Escalas.API.dll"]
