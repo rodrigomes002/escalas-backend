@@ -8,7 +8,7 @@
                       turno AS Turno,
                       repertorio AS RepertorioJson,
                       participantes AS ParticipantesJson
-               FROM escalas.tb_escala";
+               FROM tb_escala";
 
         public const string SelectEscalaById = @"
                SELECT id AS Id,
@@ -16,16 +16,16 @@
                       turno AS Turno,
                       repertorio AS RepertorioJson,
                       participantes AS ParticipantesJson
-                FROM escalas.tb_escala
+                FROM tb_escala
                WHERE id=@Id";
 
         public const string InsertEscala = @"
-               INSERT INTO escalas.tb_escala(data, turno, repertorio, participantes)
+               INSERT INTO tb_escala(data, turno, repertorio, participantes)
                  VALUES (@Data, @Turno, @Repertorio::jsonb, @Participantes::jsonb)
                RETURNING id";
 
         public const string UpdateEscala = @"
-               UPDATE escalas.tb_escala
+               UPDATE tb_escala
                    SET data=@Data,
                        turno=@Turno,
                        repertorio=@Repertorio::jsonb,
@@ -34,7 +34,7 @@
                RETURNING id";
 
         public const string DeleteEscala = @"
-               DELETE FROM escalas.tb_escala
+               DELETE FROM tb_escala
                    WHERE id=@Id";
     }
 }
