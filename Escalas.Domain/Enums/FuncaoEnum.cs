@@ -1,5 +1,5 @@
 ﻿namespace Escalas.Domain.Enums;
-public enum InstrumentoEnum
+public enum FuncaoEnum
 {
     Vocal = 1,
     Teclado,

@@ -25,7 +25,7 @@ public class MusicoRepository : IMusicoRepository
         {
             id = musico.Id,
             nome = musico.Nome,
-            instrumento = musico.Instrumento,
+            funcao = musico.Funcao,
         };
 
         return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);
@@ -40,7 +40,7 @@ public class MusicoRepository : IMusicoRepository
         var parametros = new
         {
             nome = musico.Nome,
-            instrumento = (int)musico.Instrumento,
+            funcao = (int)musico.Funcao,
         };
 
         return await conexao.ExecuteAsync(sql, parametros);

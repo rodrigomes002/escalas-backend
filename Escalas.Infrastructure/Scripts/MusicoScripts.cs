@@ -5,27 +5,27 @@ public static class MusicoScripts
     public const string SelectMusicos = @"
          select id as Id, 
                 nome as Nome, 
-                instrumento as Instrumento
-            from escalas.tb_musico";
+                funcao as Funcao
+            from tb_musico";
 
     public const string SelectMusicoById = @"
            SELECT id AS Id,
                   nome AS Nome,
-                  instrumento as Instrumento
-             FROM escalas.tb_musico
+                  funcao as Funcao
+             FROM tb_musico
             WHERE id=@id";
 
     public const string InsertMusico = @"
-            INSERT INTO escalas.tb_musico(nome, instrumento)
-              VALUES (@nome, @instrumento)
+            INSERT INTO tb_musico(nome, funcao)
+              VALUES (@nome, @funcao)
             RETURNING id";
 
     public const string UpdateMusico = @"
-           UPDATE escalas.tb_musico 
+           UPDATE tb_musico 
                 SET nome=@nome,
-                    instrumento=@instrumento
+                    funcao=@funcao
                 where id=@id
             RETURNING id";
 
-    public const string DeleteMusico = @"delete from escalas.tb_musico where id=@id";
+    public const string DeleteMusico = @"delete from tb_musico where id=@id";
 }

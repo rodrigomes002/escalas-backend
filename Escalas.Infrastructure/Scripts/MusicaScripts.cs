@@ -7,23 +7,23 @@ public static class MusicaScripts
                   nome AS Nome,
                   cantor AS Cantor,
                   tom AS Tom
-             FROM escalas.tb_musica";
+             FROM tb_musica";
 
     public const string SelectMusicaById = @"
            SELECT id AS Id,
                   nome AS Nome,
                   cantor AS Cantor,
                   tom AS Tom
-             FROM escalas.tb_musica
+             FROM tb_musica
             WHERE id=@id";
 
     public const string InsertMusica = @"
-            INSERT INTO escalas.tb_musica(nome, cantor, tom)
+            INSERT INTO tb_musica(nome, cantor, tom)
               VALUES (@nome, @cantor, @tom)
             RETURNING id";
 
     public const string UpdateMusica = @"
-            UPDATE escalas.tb_musica 
+            UPDATE tb_musica 
                 SET nome=@nome,
                     cantor=@cantor,
                     tom=@tom
@@ -31,7 +31,7 @@ public static class MusicaScripts
             RETURNING id";
 
     public const string DeleteMusica = @"
-            DELETE FROM escalas.tb_musica
+            DELETE FROM tb_musica
                 where id=@id";
 
 }

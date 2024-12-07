@@ -1,4 +1,4 @@
-﻿namespace Escalas.Infrastructure.Scripts
+﻿      namespace Escalas.Infrastructure.Scripts
 {
     public static class EscalaScripts
     {

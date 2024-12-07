@@ -8,11 +8,11 @@ namespace Escalas.Infrastructure.Scripts
                   password_hash AS PasswordHash,
                   password_salt AS PasswordSalt,
                   created AS Created
-            FROM services.tb_usuario
+            FROM tb_usuario
           WHERE username = @username";
 
     public const string InsertUsuario = @"
-    INSERT INTO services.tb_usuario(username, password_hash, password_salt, created)
+    INSERT INTO tb_usuario(username, password_hash, password_salt, created)
 	VALUES (@username, @password_hash, @password_salt, @created)
      RETURNING id";
     }

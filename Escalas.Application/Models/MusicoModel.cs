@@ -6,5 +6,5 @@ public class MusicoModel
 {
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
-    public InstrumentoEnum Instrumento { get; set; }
+    public FuncaoEnum Funcao { get; set; }
 }

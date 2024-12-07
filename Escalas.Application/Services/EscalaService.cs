@@ -26,7 +26,7 @@ namespace Escalas.Application.Services
                 return Result<int>.NotFoundResult();
 
             var repertorio = escala.Repertorio.Select(x => new { x.Nome, x.Cantor, x.Tom });
-            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Instrumento });
+            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Funcao });
 
             escala.RepertorioJson = JsonConvert.SerializeObject(repertorio);
             escala.ParticipantesJson = JsonConvert.SerializeObject(participantes);
@@ -42,7 +42,7 @@ namespace Escalas.Application.Services
         public async Task<Result<int>> CadastrarEscalaAsync(Escala escala)
         {
             var repertorio = escala.Repertorio.Select(x => new { x.Nome, x.Cantor, x.Tom });
-            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Instrumento });
+            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Funcao });
 
             escala.RepertorioJson = JsonConvert.SerializeObject(repertorio);
             escala.ParticipantesJson = JsonConvert.SerializeObject(participantes);

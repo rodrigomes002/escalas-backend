@@ -59,7 +59,7 @@ namespace Escalas.API.Controllers
 
             Log.Information("Login realizado com sucesso");
 
-            return Ok(result);
+            return Ok(result.Object);
         }
     }
 }
