@@ -26,9 +26,10 @@ namespace Escalas.Infrastructure.Repositories
             {
                 Id = escala.Id,
                 Data = escala.Data.Date,
-                Turno = escala.Turno,
-                Repertorio = escala.RepertorioJson,
-                Participantes = escala.ParticipantesJson
+                MusicasManha = escala.MusicasManhaJson,
+                MusicasNoite = escala.MusicasNoiteJson,
+                Instrumental = escala.InstrumentalJson,
+                Vocal = escala.VocalJson
             };
 
             return await conexao.ExecuteAsync(sql, parametros);
@@ -43,9 +44,10 @@ namespace Escalas.Infrastructure.Repositories
             var parametros = new
             {
                 Data = escala.Data.Date,
-                Turno = escala.Turno,
-                Repertorio = escala.RepertorioJson,
-                Participantes = escala.ParticipantesJson
+                MusicasManha = escala.MusicasManhaJson,
+                MusicasNoite = escala.MusicasNoiteJson,
+                Instrumental = escala.InstrumentalJson,
+                Vocal = escala.VocalJson
             };
 
             return await conexao.ExecuteAsync(sql, parametros);

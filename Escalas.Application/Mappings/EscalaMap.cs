@@ -9,7 +9,7 @@ namespace Escalas.Application.Mappings
         public EscalaMap() 
         {
             CreateMap<EscalaModel, Escala>()
-                .ConstructUsing(x => new Escala(x.Data, x.Turno));
+                .ConstructUsing(x => new Escala(x.Data));
 
             CreateMap<Escala, EscalaModel>();
         }

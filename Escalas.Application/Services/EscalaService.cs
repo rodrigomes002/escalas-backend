@@ -25,11 +25,7 @@ namespace Escalas.Application.Services
             if (escalaDb is null)
                 return Result<int>.NotFoundResult();
 
-            var repertorio = escala.Repertorio.Select(x => new { x.Nome, x.Cantor, x.Tom });
-            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Funcao });
-
-            escala.RepertorioJson = JsonConvert.SerializeObject(repertorio);
-            escala.ParticipantesJson = JsonConvert.SerializeObject(participantes);
+            Serialize(escala);
 
             var result = await _escalaRepository.AtualizarEscalaAsync(escala);
 
@@ -39,14 +35,12 @@ namespace Escalas.Application.Services
             return Result<int>.Ok(result);
         }
 
+       
+
         public async Task<Result<int>> CadastrarEscalaAsync(Escala escala)
         {
-            var repertorio = escala.Repertorio.Select(x => new { x.Nome, x.Cantor, x.Tom });
-            var participantes = escala.Participantes.Select(x => new { x.Nome, x.Funcao });
-
-            escala.RepertorioJson = JsonConvert.SerializeObject(repertorio);
-            escala.ParticipantesJson = JsonConvert.SerializeObject(participantes);
-
+            Serialize(escala);
+            
             var result = await _escalaRepository.CadastrarEscalaAsync(escala);
 
             if (result <= 0)
@@ -72,8 +66,7 @@ namespace Escalas.Application.Services
             if (result is null)
                 return Result<Escala>.NotFoundResult();
 
-            result.Repertorio = JsonConvert.DeserializeObject<List<Musica>>(result.RepertorioJson);
-            result.Participantes = JsonConvert.DeserializeObject<List<Musico>>(result.ParticipantesJson);
+            Deserialize(result);
 
             return Result<Escala>.Ok(result);
         }
@@ -83,11 +76,31 @@ namespace Escalas.Application.Services
 
             foreach (var item in result)
             {
-                item.Repertorio = JsonConvert.DeserializeObject<List<Musica>>(item.RepertorioJson);
-                item.Participantes = JsonConvert.DeserializeObject<List<Musico>>(item.ParticipantesJson);
+                Deserialize(item);
             }
 
             return Result<IEnumerable<Escala>>.Ok(result);
+        }
+
+        private void Deserialize(Escala escala)
+        {
+            escala.MusicasManha = JsonConvert.DeserializeObject<List<Musica>>(escala.MusicasManhaJson) ?? Enumerable.Empty<Musica>();
+            escala.MusicasNoite = JsonConvert.DeserializeObject<List<Musica>>(escala.MusicasNoiteJson) ?? Enumerable.Empty<Musica>();
+            escala.Instrumental = JsonConvert.DeserializeObject<List<Musico>>(escala.InstrumentalJson) ?? Enumerable.Empty<Musico>();
+            escala.Vocal = JsonConvert.DeserializeObject<List<Musico>>(escala.VocalJson) ?? Enumerable.Empty<Musico>();
+        }
+        
+        private void Serialize(Escala escala)
+        {
+            var musicasManha = escala.MusicasManha.Select(x => new { x.Nome, x.Cantor, x.Tom });
+            var musicasnoite = escala.MusicasNoite.Select(x => new { x.Nome, x.Cantor, x.Tom });
+            var instrumental = escala.Instrumental.Select(x => new { x.Nome, x.Funcao });
+            var vocal = escala.Vocal.Select(x => new { x.Nome, x.Funcao });
+
+            escala.MusicasManhaJson = JsonConvert.SerializeObject(musicasManha);
+            escala.MusicasNoiteJson = JsonConvert.SerializeObject(musicasnoite);
+            escala.InstrumentalJson = JsonConvert.SerializeObject(instrumental);
+            escala.VocalJson = JsonConvert.SerializeObject(vocal);
         }
     }
 }
