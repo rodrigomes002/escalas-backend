@@ -16,4 +16,4 @@ jobs:
       # Passo 6: Fazer o deploy para a EC2
       - name: Deploy to EC2
         run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" | cat -A        
+          echo "${{ secrets.EC2_SSH_KEY }}"        
