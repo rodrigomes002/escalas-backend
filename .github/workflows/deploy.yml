@@ -56,4 +56,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
 
             # Rodar o container com a imagem mais recente
-            sudo docker run -d --name escalasapi -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
+            sudo docker run -e PASSWORD_DB="$PASSWORD_DB" -d --name escalasapi -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
