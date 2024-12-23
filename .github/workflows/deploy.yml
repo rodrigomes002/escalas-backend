@@ -41,6 +41,8 @@ jobs:
 
       # Passo 6: Fazer o deploy para a EC2
       - name: Deploy to EC2
+        run: |
+          echo "$SECRET_VALUE" | cat -A
         uses: appleboy/ssh-action@v0.1.0
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -56,4 +58,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
 
             # Rodar o container com a imagem mais recente
-            docker run -d --name escalasapi-container -p 80:80 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
+            docker run -d -e PASSWORD_DB="$PASSWORD_DB" --name escalasapi-container -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
