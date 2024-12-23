@@ -24,19 +24,19 @@ builder.Services.AddSwaggerGen(s =>
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer 12345abcdef\""
     });
     s.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
                 {
-                    {
-                          new OpenApiSecurityScheme
-                          {
-                              Reference = new OpenApiReference
-                              {
-                                  Type = ReferenceType.SecurityScheme,
-                                  Id = "Bearer"
-                              }
-                          },
-                         new string[] {}
-                    }
-                });
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] { }
+        }
+    });
 });
 
 
@@ -52,7 +52,9 @@ builder.Services
         x.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenConfiguration:Key"] ?? string.Empty)),
+            IssuerSigningKey =
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(builder.Configuration["TokenConfiguration:Key"] ?? string.Empty)),
             ValidateIssuer = false,
             ValidateAudience = false
         };
@@ -64,19 +66,19 @@ builder.Services.AddCors(option =>
     option.AddDefaultPolicy(builder =>
     {
         builder.AllowAnyOrigin()
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-app.UseSwagger();
-app.UseSwaggerUI();
-//}
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
