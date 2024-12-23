@@ -65,7 +65,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("_EscalasCORS", policy =>
     {
-        policy.WithOrigins("https://escalasapp.com.br")
+        policy.WithOrigins("https://escalasapp.com.br", "https://escalasapp.netlify.app")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
