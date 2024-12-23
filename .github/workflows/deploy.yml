@@ -49,11 +49,11 @@ jobs:
           port: 22
           script: |
             # Parar e remover container anterior
-            docker stop escalasapi-container || true
-            docker rm escalasapi-container || true
+            docker stop escalasapi || true
+            docker rm escalasapi || true
 
             # Puxar a última versão da imagem
             docker pull ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
 
             # Rodar o container com a imagem mais recente
-            sudo docker run -d --name escalasapi-container -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
+            sudo docker run -d --name escalasapi -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
