@@ -61,13 +61,13 @@ builder.Services
     });
 
 
-builder.Services.AddCors(option =>
+builder.Services.AddCors(options =>
 {
-    option.AddDefaultPolicy(builder =>
+    options.AddPolicy("_EscalasCORS", policy =>
     {
-        builder.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.WithOrigins("https://escalasapp.com.br")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
 
@@ -86,6 +86,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors();
+app.UseCors("_EscalasCORS");
 
 app.Run();
