@@ -1,12 +1,12 @@
-﻿name: Build and Deploy .NET 8 API to EC2
+﻿name: Deploy Api
 
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
