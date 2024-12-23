@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       # Passo 1: Checkout do código
       - name: Checkout code
@@ -40,8 +40,8 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
 
       # Passo 6: Fazer o deploy para a EC2
-      - name: Deploy to EC2       
-        uses: appleboy/ssh-action@v0.1.0
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
@@ -51,7 +51,7 @@ jobs:
             # Parar e remover container anterior
             docker stop escalasapi-container || true
             docker rm escalasapi-container || true
-            
+
             # Puxar a última versão da imagem
             docker pull ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
 
