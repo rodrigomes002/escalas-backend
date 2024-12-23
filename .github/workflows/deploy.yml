@@ -42,7 +42,7 @@ jobs:
       # Passo 6: Fazer o deploy para a EC2
       - name: Deploy to EC2
         run: |
-          echo "$SECRET_VALUE" | cat -A
+          echo ${{ secrets.EC2_SSH_KEY }} | cat -A
         uses: appleboy/ssh-action@v0.1.0
         with:
           host: ${{ secrets.EC2_HOST }}
