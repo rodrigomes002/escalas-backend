@@ -42,20 +42,4 @@ jobs:
       # Passo 6: Fazer o deploy para a EC2
       - name: Deploy to EC2
         run: |
-          echo ${{ secrets.EC2_SSH_KEY }} | cat -A
-        uses: appleboy/ssh-action@v0.1.0
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          script: |
-            # Parar e remover container anterior
-            docker stop escalasapi-container || true
-            docker rm escalasapi-container || true
-            
-            # Puxar a última versão da imagem
-            docker pull ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
-
-            # Rodar o container com a imagem mais recente
-            docker run -d -e PASSWORD_DB="$PASSWORD_DB" --name escalasapi-container -p 5001:5001 ${{ secrets.DOCKER_USERNAME }}/escalasapi:latest
+          echo ${{ secrets.EC2_SSH_KEY }} | cat -A        
