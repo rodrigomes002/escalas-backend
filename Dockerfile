@@ -18,12 +18,13 @@ ENV TZ=America/Sao_Paulo
 # Variáveis para rodar a aplicação em HTTPS
 ENV ASPNETCORE_URLS=https://*:5001
 ENV ASPNETCORE_ENVIRONMENT=Production
+ENV PASSWORD_DB="$PASSWORD_DB"
 
 # Copiar o certificado SSL .pfx para o contêiner (ajuste o caminho conforme necessário)
 COPY ./certificate.pfx /https/yourcertificate.pfx
 
 # Definir a senha do certificado
-ENV ASPNETCORE_Kestrel__Certificates__Default__Password="yourPassword"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password="$PASSWORD_CERT"
 
 # Configurar o local do certificado
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/https/yourcertificate.pfx"
