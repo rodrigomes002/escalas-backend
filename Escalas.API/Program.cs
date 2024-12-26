@@ -61,13 +61,23 @@ builder.Services
     });
 
 
-builder.Services.AddCors(options =>
+// builder.Services.AddCors(options =>
+// {
+//     // options.AddPolicy("_EscalasCORS", policy =>
+//     // {
+//     //     policy.WithOrigins("https://escalasapp.com.br", "https://escalasapp.netlify.app")
+//     //           .AllowAnyMethod()
+//     //           .AllowAnyHeader();
+//     // });
+// });
+
+builder.Services.AddCors(option =>
 {
-    options.AddPolicy("_EscalasCORS", policy =>
+    option.AddDefaultPolicy(builder =>
     {
-        policy.WithOrigins("https://escalasapp.com.br", "https://escalasapp.netlify.app")
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
