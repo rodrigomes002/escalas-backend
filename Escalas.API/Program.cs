@@ -97,6 +97,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 //app.UseCors("_EscalasCORS");
-app.UseCors("_EscalasCORS");
+app.UseCors();
 
 app.Run();
