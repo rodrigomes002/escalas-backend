@@ -21,6 +21,11 @@ public class UsuarioService : IUsuariosService
 
     public async Task<Result<int>> CadastrarAsync(Usuario usuario)
     {
+        var user = await _usuarioRepository.GetUsuarioByUsernameAsync(usuario.Username);
+
+        if (user is not null)
+            return Result<int>.Error("O usuário informado já existe");
+
         Log.Information("Cadastrando usuario");
 
         var auth = _cryptographyProvider.HashPasword(usuario.Password);
