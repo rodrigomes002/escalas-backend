@@ -61,5 +61,13 @@ namespace Escalas.API.Controllers
 
             return Ok(result.Object);
         }
+
+        [HttpPost("validate")]
+        public IActionResult ValidateToken([FromBody] string token){
+            
+            var result = _usuarioService.ValidateToken(token);
+
+            return Ok(result.Object);
+        }
     }
 }

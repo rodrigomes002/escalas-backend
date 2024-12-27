@@ -53,4 +53,11 @@ public class UsuarioService : IUsuariosService
 
         return Result<UsuarioTokenModel>.Ok(_jwtProvider.Generate(result));
     }
+
+    public Result<bool> ValidateToken(string token)
+    {
+        var validate = _jwtProvider.ValidateToken(token);
+        
+        return Result<bool>.Ok(validate);
+    }
 }

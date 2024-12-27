@@ -8,5 +8,6 @@ namespace Escalas.Application.Interfaces
     {
         Task<Result<int>> CadastrarAsync(Usuario usuario);
         Task<Result<UsuarioTokenModel>> LoginAsync(Usuario usuario);
+        Result<bool> ValidateToken(string token);
     }
 }
