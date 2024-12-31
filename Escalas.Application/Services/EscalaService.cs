@@ -1,6 +1,7 @@
 ﻿using Escalas.Application.Interfaces;
 using Escalas.Application.Models.Result;
 using Escalas.Domain.Entities;
+using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Newtonsoft.Json;
 
@@ -35,8 +36,6 @@ namespace Escalas.Application.Services
             return Result<int>.Ok(result);
         }
 
-       
-
         public async Task<Result<int>> CadastrarEscalaAsync(Escala escala)
         {
             Serialize(escala);
@@ -70,16 +69,16 @@ namespace Escalas.Application.Services
 
             return Result<Escala>.Ok(result);
         }
-        public async Task<Result<IEnumerable<Escala>>> GetEscalaAsync()
+        public async Task<Result<PaginatedBase<Escala>>> GetEscalaAsync(int pageNumber, int pageSize, string? data)
         {
-            var result = await _escalaRepository.GetEscalasAsync();
+            var results = await _escalaRepository.GetEscalasAsync(pageNumber, pageSize, data);
 
-            foreach (var item in result)
+            foreach (var item in results.Items)
             {
                 Deserialize(item);
             }
 
-            return Result<IEnumerable<Escala>>.Ok(result);
+            return Result<PaginatedBase<Escala>>.Ok(results);
         }
 
         private void Deserialize(Escala escala)
@@ -89,7 +88,7 @@ namespace Escalas.Application.Services
             escala.Instrumental = JsonConvert.DeserializeObject<List<Musico>>(escala.InstrumentalJson) ?? Enumerable.Empty<Musico>();
             escala.Vocal = JsonConvert.DeserializeObject<List<Musico>>(escala.VocalJson) ?? Enumerable.Empty<Musico>();
         }
-        
+
         private void Serialize(Escala escala)
         {
             var musicasManha = escala.MusicasManha.Select(x => new { x.Nome, x.Cantor, x.Tom });

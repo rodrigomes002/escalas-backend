@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using Escalas.Domain.Entities;
+using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Escalas.Infrastructure.Scripts;
 using Npgsql;
+using System.Text;
 
 namespace Escalas.Infrastructure.Repositories;
 
@@ -63,12 +65,39 @@ public class MusicoRepository : IMusicoRepository
         return await conexao.QueryFirstOrDefaultAsync<Musico>(sql, new { id });
     }
 
-    public async Task<IEnumerable<Musico>> GetMusicosAsync()
+    public async Task<PaginatedBase<Musico>> GetMusicosAsync(int pageNumber, int pageSize, string? nome)
     {
         await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
+        var countSql = MusicoScripts.CountMusicos;
+        var count = await conexao.QueryFirstOrDefaultAsync<int>(countSql);
+
         var sql = MusicoScripts.SelectMusicos;
 
-        return await conexao.QueryAsync<Musico>(sql);
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine(sql);
+
+        if (nome is not null)
+            stringBuilder.AppendLine($"WHERE lower(nome) LIKE @nome");
+
+        stringBuilder.AppendLine("LIMIT @pageSize OFFSET @pageNumber");
+
+        var parametros = new
+        {
+            Nome = $"%{nome?.ToLower()}%",
+            PageNumber = (pageNumber - 1) * pageSize,
+            PageSize = pageSize
+        };
+
+        var musicos = await conexao.QueryAsync<Musico>(stringBuilder.ToString(), parametros);
+
+        var paginatedBase = new PaginatedBase<Musico>
+        {
+            Items = musicos.ToList(),
+            TotalCount = count
+        };
+
+        return paginatedBase;
     }
 }

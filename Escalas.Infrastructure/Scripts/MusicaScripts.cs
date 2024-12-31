@@ -2,12 +2,16 @@
 
 public static class MusicaScripts
 {
+    public const string CountMusicas = @"
+           SELECT COUNT(1) FROM tb_musica";
+
     public const string SelectMusicas = @"
            SELECT id AS Id,
                   nome AS Nome,
                   cantor AS Cantor,
                   tom AS Tom
-             FROM tb_musica";
+             FROM tb_musica
+            ";
 
     public const string SelectMusicaById = @"
            SELECT id AS Id,

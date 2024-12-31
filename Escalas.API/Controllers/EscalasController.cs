@@ -24,15 +24,17 @@ namespace Escalas.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] int pageNumber, [FromQuery] int pageSize, [FromQuery] string? data)
         {
             Log.Information("Buscando escala");
 
-            var result = await _escalaService.GetEscalaAsync();
+            var escalas = await _escalaService.GetEscalaAsync(pageNumber, pageSize, data);
 
-            Log.Information("{Count}escalas encontradas", result.Object.Count());
+            var results = escalas.Object.Items.Select(x => new { x.Id, x.Data, x.MusicasManha, x.MusicasNoite, x.Instrumental, x.Vocal });
 
-            return Ok(_mapper.Map<IEnumerable<Escala>, IEnumerable<EscalaModel>>(result.Object));
+            Log.Information("{Count} escalas encontradas", escalas.Object.TotalCount);
+
+            return Ok(results);
         }
 
         [HttpGet("{id:int}")]

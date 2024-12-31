@@ -1,9 +1,11 @@
 ﻿using Dapper;
 using Escalas.Domain.Entities;
+using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Escalas.Infrastructure.Scripts;
 using Newtonsoft.Json;
 using Npgsql;
+using System.Text;
 
 namespace Escalas.Infrastructure.Repositories
 {
@@ -71,13 +73,40 @@ namespace Escalas.Infrastructure.Repositories
             return await conexao.QueryFirstOrDefaultAsync<Escala>(sql, new { id });
         }
 
-        public async Task<IEnumerable<Escala>> GetEscalasAsync()
+        public async Task<PaginatedBase<Escala>> GetEscalasAsync(int pageNumber, int pageSize, string? data)
         {
             await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
+            var countSql = EscalaScripts.CountEscalas;
+            var count = await conexao.QueryFirstOrDefaultAsync<int>(countSql);
+
             var sql = EscalaScripts.SelectEscala;
 
-            return await conexao.QueryAsync<Escala>(sql);
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine(sql);
+
+            if (data is not null)
+                stringBuilder.AppendLine($"WHERE data::date = @data");
+
+            stringBuilder.AppendLine("LIMIT @pageSize OFFSET @pageNumber");
+
+            var parametros = new
+            {
+                Data = Convert.ToDateTime(data),
+                PageNumber = (pageNumber - 1) * pageSize,
+                PageSize = pageSize
+            };
+
+            var escalas = await conexao.QueryAsync<Escala>(stringBuilder.ToString(), parametros);
+
+            var paginatedBase = new PaginatedBase<Escala>
+            {
+                Items = escalas.ToList(),
+                TotalCount = count
+            };
+
+            return paginatedBase;
         }
     }
 }

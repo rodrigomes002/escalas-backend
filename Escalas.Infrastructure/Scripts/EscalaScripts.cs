@@ -2,6 +2,9 @@
 {
     public static class EscalaScripts
     {
+        public const string CountEscalas = @"
+          SELECT COUNT(1) FROM tb_escala";
+
         public const string SelectEscala = @"
                SELECT id AS Id,
                       data AS Data,

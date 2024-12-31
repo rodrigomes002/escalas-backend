@@ -26,16 +26,15 @@ namespace Escalas.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] int pageNumber, [FromQuery] int pageSize, [FromQuery] string? nome)
         {
             Log.Information("Buscando musicas");
 
-            var result = await _musicaService.GetMusicasAsync();
-            var result2 = await _musicoService.GetMusicosAsync();
+            var result = await _musicaService.GetMusicasAsync(pageNumber, pageSize, nome);
 
-            Log.Information("{Count} musicas encontradas", result.Object.Count());
+            Log.Information("{Count} musicas encontradas", result.Object.TotalCount);
 
-            return Ok(_mapper.Map<IEnumerable<Musica>, IEnumerable<MusicaModel>>(result.Object));
+            return Ok(result.Object);
         }
 
         [HttpGet("{id:int}")]

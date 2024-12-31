@@ -1,10 +1,11 @@
 ﻿using Escalas.Domain.Entities;
+using Escalas.Domain.Entities.Base;
 
 namespace Escalas.Domain.Interfaces;
 
 public interface IMusicoRepository
 {
-    Task<IEnumerable<Musico>> GetMusicosAsync();
+    Task<PaginatedBase<Musico>> GetMusicosAsync(int pageNumber, int pageSize, string? nome);
     Task<Musico> GetMusicoByIdAsync(int id);
     Task<int> CadastrarMusicoAsync(Musico musico);
     Task<int> AtualizarMusicoAsync(Musico musico);

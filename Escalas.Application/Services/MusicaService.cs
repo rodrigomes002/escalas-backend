@@ -1,6 +1,7 @@
 ﻿using Escalas.Application.Interfaces;
 using Escalas.Application.Models.Result;
 using Escalas.Domain.Entities;
+using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 
 namespace Escalas.Application.Services;
@@ -69,10 +70,10 @@ public class MusicaService : IMusicasService
         return Result<Musica>.Ok(result);
     }
 
-    public async Task<Result<IEnumerable<Musica>>> GetMusicasAsync()
+    public async Task<Result<PaginatedBase<Musica>>> GetMusicasAsync(int pageNumber, int pageSize, string? nome)
     {
-        var musicas = await _musicaRepository.GetMusicasAsync();
+        var musicas = await _musicaRepository.GetMusicasAsync(pageNumber, pageSize, nome);
 
-        return Result<IEnumerable<Musica>>.Ok(musicas);
+        return Result<PaginatedBase<Musica>>.Ok(musicas);
     }
 }
