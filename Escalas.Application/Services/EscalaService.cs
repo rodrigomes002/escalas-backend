@@ -35,8 +35,6 @@ namespace Escalas.Application.Services
             return Result<int>.Ok(result);
         }
 
-       
-
         public async Task<Result<int>> CadastrarEscalaAsync(Escala escala)
         {
             Serialize(escala);
@@ -70,6 +68,7 @@ namespace Escalas.Application.Services
 
             return Result<Escala>.Ok(result);
         }
+
         public async Task<Result<IEnumerable<Escala>>> GetEscalaAsync()
         {
             var result = await _escalaRepository.GetEscalasAsync();
