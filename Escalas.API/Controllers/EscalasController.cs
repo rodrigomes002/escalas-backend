@@ -29,7 +29,6 @@ namespace Escalas.API.Controllers
             Log.Information("Buscando escala");
 
             var escalas = await _escalaService.GetEscalaAsync(pageNumber, pageSize, data);
-
             var results = escalas.Object.Items.Select(x => new { x.Id, x.Data, x.MusicasManha, x.MusicasNoite, x.Instrumental, x.Vocal });
 
             Log.Information("{Count} escalas encontradas", escalas.Object.TotalCount);
