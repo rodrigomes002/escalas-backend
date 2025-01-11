@@ -27,7 +27,7 @@ public class JwtProvider : IJwtProvider
         var credentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["TokenConfiguration:Key"] ?? string.Empty)),
             SecurityAlgorithms.HmacSha256);
-        var expiration = DateTime.UtcNow.AddHours(1);
+        var expiration = DateTime.UtcNow.AddHours(5);
 
         var token = new JwtSecurityToken(
             claims: claims,

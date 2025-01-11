@@ -11,6 +11,7 @@ builder.Configuration.AddJsonFile($"appsettings.json", false, true);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDependencyResolver();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddSwaggerGen(s =>
 {

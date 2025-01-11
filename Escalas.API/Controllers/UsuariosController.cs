@@ -1,3 +1,4 @@
+using Amazon.SecretsManager.Model.Internal.MarshallTransformations;
 using AutoMapper;
 using Escalas.API.Controllers.Base;
 using Escalas.Application.Interfaces;
@@ -5,6 +6,7 @@ using Escalas.Application.Models;
 using Escalas.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Serilog;
 
 namespace Escalas.API.Controllers
@@ -16,6 +18,7 @@ namespace Escalas.API.Controllers
     { 
         private readonly IMapper _mapper;
         private readonly IUsuariosService _usuarioService;
+
         public UsuariosController(IMapper mapper, IUsuariosService usuarioService)
         {
             _mapper = mapper;
