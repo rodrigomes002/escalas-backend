@@ -28,12 +28,11 @@ namespace Escalas.API.Controllers
         {
             Log.Information("Buscando escala");
 
-            var escalas = await _escalaService.GetEscalaAsync(pageNumber, pageSize, data);
-            var results = escalas.Object.Items.Select(x => new { x.Id, x.Data, x.MusicasManha, x.MusicasNoite, x.Instrumental, x.Vocal });
+            var result = await _escalaService.GetEscalaAsync(pageNumber, pageSize, data);
 
-            Log.Information("{Count} escalas encontradas", escalas.Object.TotalCount);
+            Log.Information("{Count} escalas encontradas", result.Object.TotalCount);
 
-            return Ok(results);
+            return Ok(result.Object);
         }
 
         [HttpGet("{id:int}")]
