@@ -6,7 +6,7 @@ namespace Escalas.Application.Interfaces
 {
     public interface IEscalaService
     {
-        Task<Result<PaginatedBase<Escala>>> GetEscalaAsync(int pageNumber, int pageSize, string? data);
+        Task<Result<IEnumerable<Escala>>> GetEscalaAsync();
         Task<Result<Escala>> GetEscalaByIdAsync(int id);
         Task<Result<int>> CadastrarEscalaAsync(Escala escala);
         Task<Result<int>> AtualizarEscalaAsync(int id, Escala escala);

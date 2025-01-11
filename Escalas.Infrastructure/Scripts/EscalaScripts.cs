@@ -2,9 +2,6 @@
 {
     public static class EscalaScripts
     {
-        public const string CountEscalas = @"
-          SELECT COUNT(1) FROM tb_escala";
-
         public const string SelectEscala = @"
                SELECT id AS Id,
                       data AS Data,
@@ -12,7 +9,8 @@
                       musicas_noite AS MusicasNoiteJson,
                       instrumental AS InstrumentalJson,
                       vocal AS VocalJson
-               FROM tb_escala";
+               FROM tb_escala
+              WHERE EXTRACT(MONTH FROM data) = @data";
 
         public const string SelectEscalaById = @"
                SELECT id AS Id,

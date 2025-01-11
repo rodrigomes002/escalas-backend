@@ -24,13 +24,13 @@ namespace Escalas.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] int pageNumber, [FromQuery] int pageSize, [FromQuery] string? data)
+        public async Task<IActionResult> Get()
         {
             Log.Information("Buscando escala");
 
-            var result = await _escalaService.GetEscalaAsync(pageNumber, pageSize, data);
+            var result = await _escalaService.GetEscalaAsync();
 
-            Log.Information("{Count} escalas encontradas", result.Object.TotalCount);
+            Log.Information("{Count} escalas encontradas", result.Object.Count());
 
             return Ok(result.Object);
         }

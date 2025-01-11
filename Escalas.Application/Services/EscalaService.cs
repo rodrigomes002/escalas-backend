@@ -1,7 +1,6 @@
 ﻿using Escalas.Application.Interfaces;
 using Escalas.Application.Models.Result;
 using Escalas.Domain.Entities;
-using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Newtonsoft.Json;
 
@@ -69,16 +68,17 @@ namespace Escalas.Application.Services
 
             return Result<Escala>.Ok(result);
         }
-        public async Task<Result<PaginatedBase<Escala>>> GetEscalaAsync(int pageNumber, int pageSize, string? data)
-        {
-            var results = await _escalaRepository.GetEscalasAsync(pageNumber, pageSize, data);
 
-            foreach (var item in results.Items)
+        public async Task<Result<IEnumerable<Escala>>> GetEscalaAsync()
+        {
+            var results = await _escalaRepository.GetEscalasAsync();
+
+            foreach (var item in results)
             {
                 Deserialize(item);
             }
 
-            return Result<PaginatedBase<Escala>>.Ok(results);
+            return Result<IEnumerable<Escala>>.Ok(results);
         }
 
         private void Deserialize(Escala escala)

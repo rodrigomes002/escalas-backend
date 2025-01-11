@@ -73,40 +73,20 @@ namespace Escalas.Infrastructure.Repositories
             return await conexao.QueryFirstOrDefaultAsync<Escala>(sql, new { id });
         }
 
-        public async Task<PaginatedBase<Escala>> GetEscalasAsync(int pageNumber, int pageSize, string? data)
+        public async Task<IEnumerable<Escala>> GetEscalasAsync()
         {
             await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
-            var countSql = EscalaScripts.CountEscalas;
-            var count = await conexao.QueryFirstOrDefaultAsync<int>(countSql);
-
             var sql = EscalaScripts.SelectEscala;
-
-            var stringBuilder = new StringBuilder();
-
-            stringBuilder.AppendLine(sql);
-
-            if (data is not null)
-                stringBuilder.AppendLine($"WHERE data::date = @data");
-
-            stringBuilder.AppendLine("LIMIT @pageSize OFFSET @pageNumber");
 
             var parametros = new
             {
-                Data = Convert.ToDateTime(data),
-                PageNumber = (pageNumber - 1) * pageSize,
-                PageSize = pageSize
+                data = DateTime.Now.Date.Month
             };
 
-            var escalas = await conexao.QueryAsync<Escala>(stringBuilder.ToString(), parametros);
+            var escalas = await conexao.QueryAsync<Escala>(sql, parametros);
 
-            var paginatedBase = new PaginatedBase<Escala>
-            {
-                Items = escalas.ToList(),
-                TotalCount = count
-            };
-
-            return paginatedBase;
+            return escalas;
         }
     }
 }
