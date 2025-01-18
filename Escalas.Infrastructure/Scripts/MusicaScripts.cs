@@ -3,14 +3,23 @@
 public static class MusicaScripts
 {
     public const string CountMusicas = @"
-           SELECT COUNT(1) FROM tb_musica";
+           SELECT COUNT(1) 
+             FROM tb_musica
+           ";
 
     public const string SelectMusicas = @"
+           SELECT COUNT(1) 
+             FROM tb_musica
+            WHERE (@nome is null or nome like @nome);
+        
            SELECT id AS Id,
                   nome AS Nome,
                   cantor AS Cantor,
                   tom AS Tom
              FROM tb_musica
+            WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome)
+         ORDER BY nome
+            LIMIT @pageSize OFFSET @pageNumber;
             ";
 
     public const string SelectMusicaById = @"
