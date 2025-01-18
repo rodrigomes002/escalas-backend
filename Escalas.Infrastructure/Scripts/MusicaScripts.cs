@@ -2,15 +2,10 @@
 
 public static class MusicaScripts
 {
-    public const string CountMusicas = @"
-           SELECT COUNT(1) 
-             FROM tb_musica
-           ";
-
     public const string SelectMusicas = @"
            SELECT COUNT(1) 
              FROM tb_musica
-            WHERE (@nome is null or nome like @nome);
+            WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome);
         
            SELECT id AS Id,
                   nome AS Nome,
@@ -32,19 +27,19 @@ public static class MusicaScripts
 
     public const string InsertMusica = @"
             INSERT INTO tb_musica(nome, cantor, tom)
-              VALUES (@nome, @cantor, @tom)
-            RETURNING id";
+                 VALUES (@nome, @cantor, @tom)
+              RETURNING id";
 
     public const string UpdateMusica = @"
             UPDATE tb_musica 
-                SET nome=@nome,
-                    cantor=@cantor,
-                    tom=@tom
-                where id=@id
-            RETURNING id";
+               SET nome=@nome,
+                   cantor=@cantor,
+                   tom=@tom
+             WHERE id=@id
+         RETURNING id";
 
     public const string DeleteMusica = @"
-            DELETE FROM tb_musica
-                where id=@id";
-
+            DELETE 
+              FROM tb_musica
+             WHERE id=@id";
 }

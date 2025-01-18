@@ -69,19 +69,7 @@ public class MusicoRepository : IMusicoRepository
     {
         await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
-        var countSql = MusicoScripts.CountMusicos;
-        var count = await conexao.QueryFirstOrDefaultAsync<int>(countSql);
-
         var sql = MusicoScripts.SelectMusicos;
-
-        var stringBuilder = new StringBuilder();
-
-        stringBuilder.AppendLine(sql);
-
-        if (nome is not null)
-            stringBuilder.AppendLine($"WHERE lower(nome) LIKE @nome");
-
-        stringBuilder.AppendLine("LIMIT @pageSize OFFSET @pageNumber");
 
         var parametros = new
         {
@@ -90,12 +78,14 @@ public class MusicoRepository : IMusicoRepository
             PageSize = pageSize
         };
 
-        var musicos = await conexao.QueryAsync<Musico>(stringBuilder.ToString(), parametros);
-
+        var multiple = await conexao.QueryMultipleAsync(sql, parametros);
+        var totalCount = await multiple.ReadFirstAsync<int>();
+        var musicos = (await multiple.ReadAsync<Musico>()).AsList();
+        
         var paginatedBase = new PaginatedBase<Musico>
         {
             Items = musicos.ToList(),
-            TotalCount = count
+            TotalCount = totalCount
         };
 
         return paginatedBase;
