@@ -38,7 +38,7 @@ public static class MusicoScripts
         RETURNING id";
 
     public const string DeleteMusico = @"
-        SELECT 
+        DELETE 
           FROM tb_musico 
          WHERE id=@id";
 }

@@ -27,7 +27,7 @@ public class MusicoService : IMusicosService
         var result = await _musicoRepository.AtualizarMusicoAsync(musico);
 
         if (result <= 0)
-            return Result<int>.Error("Erro ao atualizar uma músico");
+            return Result<int>.Error("Erro ao atualizar um músico");
 
         return Result<int>.Ok(result);
     }
@@ -37,7 +37,7 @@ public class MusicoService : IMusicosService
         var result = await _musicoRepository.CadastrarMusicoAsync(musico);
 
         if (result <= 0)
-            return Result<int>.Error("Erro ao cadastrar uma música");
+            return Result<int>.Error("Erro ao cadastrar um musico");
 
         return Result<int>.Ok(result);
 
@@ -56,7 +56,7 @@ public class MusicoService : IMusicosService
         var result = await _musicoRepository.DeletarMusicoAsync(id);
 
         if (result <= 0)
-            return Result<int>.Error("Erro ao deletar uma música");
+            return Result<int>.Error("Erro ao deletar uma musico");
 
         return Result<int>.Ok(result);
     }
