@@ -81,7 +81,8 @@ namespace Escalas.Infrastructure.Repositories
 
             var parametros = new
             {
-                data = DateTime.Now.Date.Month
+                month = DateTime.Now.Date.Month,
+                year = DateTime.Now.Date.Year,
             };
 
             var escalas = await conexao.QueryAsync<Escala>(sql, parametros);

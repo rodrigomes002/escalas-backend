@@ -10,7 +10,8 @@
                       instrumental AS InstrumentalJson,
                       vocal AS VocalJson
                FROM tb_escala
-              WHERE EXTRACT(MONTH FROM data) = @data";
+              WHERE EXTRACT(MONTH FROM data) = @month
+                AND EXTRACT(YEAR FROM data) = @year";
 
         public const string SelectEscalaById = @"
                SELECT id AS Id,

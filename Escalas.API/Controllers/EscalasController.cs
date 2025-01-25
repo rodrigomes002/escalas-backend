@@ -32,7 +32,7 @@ namespace Escalas.API.Controllers
 
             Log.Information("{Count} escalas encontradas", result.Object.Count());
 
-            return Ok(result.Object);
+            return Ok(_mapper.Map<IEnumerable<Escala>, IEnumerable<EscalaModel>>(result.Object));
         }
 
         [HttpGet("{id:int}")]
