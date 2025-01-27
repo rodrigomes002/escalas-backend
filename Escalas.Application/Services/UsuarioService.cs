@@ -42,11 +42,11 @@ public class UsuarioService : IUsuariosService
 
     public async Task<Result<UsuarioTokenModel>> LoginAsync(Usuario usuario)
     {
-        Log.Information("Cadastrando usuario");
+        Log.Information("Login de usuario");
         var result = await _usuarioRepository.GetUsuarioByUsernameAsync(usuario.Username);
 
         if (result is null)
-            return Result<UsuarioTokenModel>.NotFoundResult();
+            return Result<UsuarioTokenModel>.Error("Usuário não encontrado");
 
         if (!_cryptographyProvider.VerifyPassword(usuario.Password, result.PasswordHash, result.PasswordSalt))
             return Result<UsuarioTokenModel>.Error("Senha inválida");

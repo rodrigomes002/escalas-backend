@@ -54,8 +54,8 @@ namespace Escalas.API.Controllers
 
             var result = await _usuarioService.LoginAsync(usuario);
 
-            if (result.Notfound)
-                return NotFound();
+            if (!result.IsValid)
+                return BadRequest(result.Notifications);
 
             Log.Information("Login realizado com sucesso");
 
