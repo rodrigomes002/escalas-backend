@@ -9,7 +9,7 @@ using Serilog;
 
 namespace Escalas.API.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("api/escalas")]
     public class EscalasController : BaseController
@@ -24,6 +24,7 @@ namespace Escalas.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             Log.Information("Buscando escala");
@@ -36,6 +37,7 @@ namespace Escalas.API.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             Log.Information("Buscando escala {Id}", id);
@@ -51,6 +53,7 @@ namespace Escalas.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] EscalaModel model)
         {
             var escala = _mapper.Map<EscalaModel, Escala>(model);
@@ -71,6 +74,7 @@ namespace Escalas.API.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Put([FromBody] EscalaModel model, int id)
         {
             var escala = _mapper.Map<EscalaModel, Escala>(model);
@@ -94,6 +98,7 @@ namespace Escalas.API.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             Log.Information("Deletando escala {id}", id);
