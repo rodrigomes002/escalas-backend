@@ -11,7 +11,8 @@
                       vocal AS VocalJson
                FROM tb_escala
               WHERE EXTRACT(MONTH FROM data) = @month
-                AND EXTRACT(YEAR FROM data) = @year";
+                AND EXTRACT(YEAR FROM data) = @year
+           ORDER BY Data ASC";
 
         public const string SelectEscalaById = @"
                SELECT id AS Id,
