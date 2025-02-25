@@ -79,10 +79,19 @@ namespace Escalas.Infrastructure.Repositories
 
             var sql = EscalaScripts.SelectEscala;
 
+            var now = DateTime.Now;    
+            var firstDayOfMonth = new DateTime(now.Year, now.Month, 1).AddMonths(1);
+            var lastDayOfMonth = firstDayOfMonth.AddDays(-1);
+            
+            var daysUntilSunday = (int)lastDayOfMonth.DayOfWeek;
+            var daysToSubtract = (daysUntilSunday == 0) ? 0 : daysUntilSunday;
+        
+            var lastSunday = lastDayOfMonth.AddDays(-daysToSubtract);  
+
             var parametros = new
             {
-                month = DateTime.Now.Date.Month,
-                year = DateTime.Now.Date.Year,
+                month = now.Date > lastSunday.Date ? DateTime.Now.AddMonths(1).Date.Month : DateTime.Now.Date.Month,
+                year = now.Date > lastSunday.Date ? DateTime.Now.AddMonths(1).Date.Year : DateTime.Now.Date.Year,
             };
 
             var escalas = await conexao.QueryAsync<Escala>(sql, parametros);
