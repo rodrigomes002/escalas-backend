@@ -65,11 +65,11 @@ namespace Escalas.API.Controllers
 
         [Authorize]
         [HttpPut("add_role")]
-        public async Task<IActionResult> AddRole([FromQuery] int userId, [FromQuery] int roleId)
+        public async Task<IActionResult> AddRole([FromQuery] int usuarioId, [FromQuery] int cargoId)
         {
             Log.Information("Inserindo cargo a um usuário");
 
-            var result = await _usuarioService.AtribuirCargoAsync(userId, roleId);
+            var result = await _usuarioService.AtribuirCargoAsync(usuarioId, cargoId);
 
             if (result.Notfound)
                 return NotFound();

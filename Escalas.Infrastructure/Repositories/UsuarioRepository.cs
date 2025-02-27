@@ -15,7 +15,7 @@ public class UsuarioRepository : IUsuarioRepository
         _connectionStringConfiguration = connectionStringConfiguration;
     }
 
-    public async Task<int> AtualizarCargoUsuarioAsync(Usuario usuario)
+    public async Task<int> AtualizarCargoUsuarioAsync(Usuario usuario, Cargo cargo)
     {
         await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
 
@@ -24,7 +24,7 @@ public class UsuarioRepository : IUsuarioRepository
         var parametros = new
         {
             id = usuario.Id,
-            cargo = usuario.CargoJson
+            id_cargo = cargo.Id
         };
 
         return await conexao.ExecuteAsync(sql, parametros);

@@ -23,28 +23,24 @@ public class UsuarioService : IUsuariosService
         _cryptographyProvider = cryptographyProvider;
     }
 
-    public async Task<Result<int>> AtribuirCargoAsync(int userId, int roleId)
+    public async Task<Result<int>> AtribuirCargoAsync(int usuarioId, int cargoId)
     {
-        if (userId == 0 || roleId == 0)
+        if (usuarioId == 0 && cargoId == 0)
             return Result<int>.Error("É necessário especificar um id");
 
-        var userDb = await _usuarioRepository.GetUsuarioByIdAsync(userId);
+        var usuario = await _usuarioRepository.GetUsuarioByIdAsync(usuarioId);
 
-        if (userDb is null)
+        if (usuario is null)
             return Result<int>.Error("Usuario não encontrado");
 
-        var roleDb = await _cargoRepository.GetCargosByIdAsync(roleId);
+        var cargo = await _cargoRepository.GetCargosByIdAsync(cargoId);
 
-        if (roleDb is null)
+        if (cargo is null)
             return Result<int>.Error("Cargo não encontrado");
 
         Log.Information("Atribuindo um cargo");
 
-        userDb.Cargo = roleDb;
-
-        Serialize(userDb);
-
-        var result = await _usuarioRepository.AtualizarCargoUsuarioAsync(userDb);
+        var result = await _usuarioRepository.AtualizarCargoUsuarioAsync(usuario, cargo);
 
         if (result <= 0)
             return Result<int>.Error("Erro ao atribuir um cargo");
@@ -54,8 +50,6 @@ public class UsuarioService : IUsuariosService
 
     public async Task<Result<int>> CadastrarAsync(Usuario usuario)
     {
-        Serialize(usuario);
-
         var user = await _usuarioRepository.GetUsuarioByUsernameAsync(usuario.Username);
 
         if (user is not null)
@@ -77,8 +71,6 @@ public class UsuarioService : IUsuariosService
 
     public async Task<Result<UsuarioTokenModel>> LoginAsync(Usuario usuario)
     {
-        Deserialize(usuario);
-
         Log.Information("Login de usuario");
         var result = await _usuarioRepository.GetUsuarioByUsernameAsync(usuario.Username);
 
@@ -96,17 +88,5 @@ public class UsuarioService : IUsuariosService
         var validate = _jwtProvider.ValidateToken(token);
 
         return Result<bool>.Ok(validate);
-    }
-
-    private void Deserialize(Usuario usuario)
-    {
-        usuario.Cargo = JsonConvert.DeserializeObject<Cargo>(usuario.CargoJson);
-    }
-
-    private void Serialize(Usuario usuario)
-    {
-        var cargo = usuario.Cargo;
-
-        usuario.CargoJson = JsonConvert.SerializeObject(cargo);
     }
 }

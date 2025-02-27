@@ -7,7 +7,7 @@ namespace Escalas.Infrastructure.Scripts
                       username AS Username,
                       password_hash AS PasswordHash,
                       password_salt AS PasswordSalt,
-                      cargo AS CargoJson,
+                      id_cargo AS IdCargo,
                       created AS Created
                  FROM tb_usuario
                 WHERE username = @username";
@@ -17,20 +17,20 @@ namespace Escalas.Infrastructure.Scripts
                       username AS Username,
                       password_hash AS PasswordHash,
                       password_salt AS PasswordSalt,
-                      cargo AS CargoJson,
+                      id_cargo AS IdCargo,
                       created AS Created
                  FROM tb_usuario
                 WHERE id = @id";
 
         public const string UpdateCargoUsuario = @"
                UPDATE tb_usuario 
-                  SET cargo=@cargo::jsonb
+                  SET id_cargo=@id_cargo
                 WHERE id=@id
             RETURNING id";
 
         public const string InsertUsuario = @"
-               INSERT INTO tb_usuario(username, password_hash, password_salt, cargo, created)
-	                VALUES (@username, @password_hash, @password_salt, @cargo::jsonb, @created)
+               INSERT INTO tb_usuario(username, password_hash, password_salt, id_cargo, created)
+	                VALUES (@username, @password_hash, @password_salt, @id_cargo, @created)
                  RETURNING id";
     }
 }

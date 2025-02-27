@@ -7,6 +7,6 @@ namespace Escalas.Domain.Interfaces
         Task<Usuario> GetUsuarioByUsernameAsync(string username);
         Task<Usuario> GetUsuarioByIdAsync(int id);
         Task<int> CadastrarAsync(Usuario usuario);
-        Task<int> AtualizarCargoUsuarioAsync(Usuario usuario);
+        Task<int> AtualizarCargoUsuarioAsync(Usuario usuario, Cargo cargo);
     }
 }

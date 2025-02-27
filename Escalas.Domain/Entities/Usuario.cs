@@ -26,6 +26,6 @@ namespace Escalas.Domain.Entities
         public string CargoJson { get; set; } = string.Empty;
         public DateTime Created { get; set; } = DateTime.Now;
 
-        public Cargo Cargo { get; set; }
+        public int IdCargo { get; set; }
     }
 }
