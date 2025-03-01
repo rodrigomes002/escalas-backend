@@ -90,5 +90,14 @@ namespace Escalas.Infrastructure.Repositories
 
             return await conexao.QueryFirstOrDefaultAsync<Cargo>(sql, new { id });
         }
+
+        public async Task<Cargo> GetDefaultCargo()
+        {
+            await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+
+            var sql = CargoScripts.SelectDefaultCargo;
+
+            return await conexao.QueryFirstOrDefaultAsync<Cargo>(sql);
+        }
     }
 }

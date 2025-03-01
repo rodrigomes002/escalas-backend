@@ -7,6 +7,7 @@ namespace Escalas.Domain.Interfaces
     {
         Task<PaginatedBase<Cargo>> GetCargosAsync(int pageNumber, int pageSize, string? nome);
         Task<Cargo> GetCargosByIdAsync(int id);
+        Task<Cargo> GetDefaultCargo();
         Task<int> CadastrarCargoAsync(Cargo cargo);
         Task<int> AtualizarCargoAsync(Cargo cargo);
         Task<int> DeletarCargoAsync(int id);

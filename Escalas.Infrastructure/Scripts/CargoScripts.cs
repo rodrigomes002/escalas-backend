@@ -23,6 +23,13 @@ public static class CargoScripts
              FROM tb_cargo
             WHERE id=@id";
 
+    public const string SelectDefaultCargo = @"
+           SELECT id AS Id,
+                  nome AS Nome,
+                  nivel_Autorizacao AS NivelAutorizacao
+             FROM tb_cargo
+            WHERE nivel_Autorizacao=3";
+
     public const string InsertCargo = @"
             INSERT INTO tb_cargo(nome, nivel_autorizacao)
                  VALUES (@nome, @nivel_autorizacao)

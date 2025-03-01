@@ -23,7 +23,6 @@ namespace Escalas.Domain.Entities
         public string Password { get; set; }
         public string PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public string CargoJson { get; set; } = string.Empty;
         public DateTime Created { get; set; } = DateTime.Now;
 
         public int IdCargo { get; set; }
