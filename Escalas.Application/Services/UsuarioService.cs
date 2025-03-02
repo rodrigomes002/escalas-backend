@@ -61,12 +61,6 @@ public class UsuarioService : IUsuariosService
         usuario.PasswordHash = auth.Hash;
         usuario.PasswordSalt = auth.Salt;
 
-        if (usuario.IdCargo <= 0) 
-        {
-            var cargo = await _cargoRepository.GetDefaultCargo();
-            usuario.IdCargo = cargo.Id;
-        }    
-
         var result = await _usuarioRepository.CadastrarAsync(usuario);
 
         if (result <= 0)

@@ -26,5 +26,6 @@ namespace Escalas.Domain.Entities
         public DateTime Created { get; set; } = DateTime.Now;
 
         public int IdCargo { get; set; }
+        public string Cargo { get; set; }
     }
 }

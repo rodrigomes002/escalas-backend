@@ -34,7 +34,7 @@ namespace Escalas.API.Controllers
 
             return Ok(result.Object);
         }
-
+        
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -47,6 +47,7 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<Cargo, CargoModel>(result.Object));
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CargoModel model)
         {
@@ -64,6 +65,7 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put([FromBody] CargoModel model, int id)
         {
@@ -87,6 +89,7 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

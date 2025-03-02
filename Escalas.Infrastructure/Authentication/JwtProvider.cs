@@ -22,6 +22,7 @@ public class JwtProvider : IJwtProvider
         {
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new(JwtRegisteredClaimNames.UniqueName, user.Username),
+            new("role", user.Cargo)
         };
 
         var credentials = new SigningCredentials(

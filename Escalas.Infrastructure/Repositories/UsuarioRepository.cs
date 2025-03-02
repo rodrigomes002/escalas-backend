@@ -41,7 +41,6 @@ public class UsuarioRepository : IUsuarioRepository
             username = usuario.Username,
             password_hash = usuario.PasswordHash,
             password_salt = usuario.PasswordSalt,
-            id_cargo = usuario.IdCargo,
             created = usuario.Created,
         };
 

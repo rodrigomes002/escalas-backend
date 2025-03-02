@@ -50,6 +50,7 @@ namespace Escalas.API.Controllers
             return Ok(_mapper.Map<Musico, MusicoModel>(result.Object));
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MusicoModel model)
         {
@@ -70,6 +71,7 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Put([FromBody] MusicoModel model, int id)
         {
@@ -93,6 +95,7 @@ namespace Escalas.API.Controllers
             return Ok(new { id = result.Object });
         }
 
+        [Authorize(Roles = "Admin, Lider")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

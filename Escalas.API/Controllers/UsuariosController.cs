@@ -63,8 +63,8 @@ namespace Escalas.API.Controllers
             return Ok(result.Object);
         }
 
-        [Authorize]
-        [HttpPut("add_role")]
+        [Authorize(Roles = "Admin, Lider")]
+        [HttpPut("add-role")]
         public async Task<IActionResult> AddRole([FromQuery] int usuarioId, [FromQuery] int cargoId)
         {
             Log.Information("Inserindo cargo a um usuário");
