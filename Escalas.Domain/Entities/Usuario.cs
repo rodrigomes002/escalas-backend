@@ -1,5 +1,6 @@
 using Escalas.Domain.Entities.Base;
 using Flunt.Validations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Escalas.Domain.Entities
 {
@@ -23,5 +24,8 @@ namespace Escalas.Domain.Entities
         public string PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
+
+        public int IdCargo { get; set; }
+        public string Cargo { get; set; }
     }
 }

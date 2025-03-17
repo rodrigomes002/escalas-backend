@@ -25,6 +25,7 @@ public static class DependencyResolver
         services.AddScoped<IMusicosService, MusicoService>();
         services.AddScoped<IEscalaService, EscalaService>();
         services.AddScoped<IUsuariosService, UsuarioService>();
+        services.AddScoped<ICargoService, CargoService>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddSingleton<ICryptographyProvider, CryptographyProvider>();
     }
@@ -36,5 +37,6 @@ public static class DependencyResolver
         services.AddScoped<IMusicoRepository, MusicoRepository>();
         services.AddScoped<IEscalaRepository, EscalaRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<ICargoRepository, CargoRepository>();
     }
 }

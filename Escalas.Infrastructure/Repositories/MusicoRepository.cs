@@ -4,7 +4,6 @@ using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Escalas.Infrastructure.Scripts;
 using Npgsql;
-using System.Text;
 
 namespace Escalas.Infrastructure.Repositories;
 
@@ -27,7 +26,7 @@ public class MusicoRepository : IMusicoRepository
         {
             id = musico.Id,
             nome = musico.Nome,
-            funcao = musico.Funcao,
+            funcao = musico.Funcao
         };
 
         return await conexao.QueryFirstOrDefaultAsync<int>(sql, parameters);

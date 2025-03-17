@@ -3,18 +3,18 @@
 public static class MusicoScripts
 {
     public const string SelectMusicos = @"
-        SELECT COUNT(1) 
-          FROM tb_musico
-         WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome);
+            SELECT COUNT(1) 
+              FROM tb_musico
+             WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome);
 
-        SELECT id as Id, 
-                 nome AS Nome, 
-                 funcao AS Funcao
-          FROM tb_musico
-         WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome)
-      ORDER BY nome
-         LIMIT @pageSize OFFSET @pageNumber;
-         ";
+            SELECT id AS Id, 
+                   nome AS Nome, 
+                   funcao AS Funcao
+              FROM tb_musico
+             WHERE (@nome IS NULL OR LOWER(nome) LIKE @nome)
+          ORDER BY nome
+             LIMIT @pageSize OFFSET @pageNumber;
+             ";
 
     public const string SelectMusicoById = @"
            SELECT id AS Id,

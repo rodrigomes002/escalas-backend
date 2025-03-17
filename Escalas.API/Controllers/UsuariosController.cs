@@ -9,11 +9,10 @@ using Serilog;
 
 namespace Escalas.API.Controllers
 {
-    [AllowAnonymous]
     [ApiController]
     [Route("api/usuarios")]
     public class UsuariosController : BaseController
-    { 
+    {
         private readonly IMapper _mapper;
         private readonly IUsuariosService _usuarioService;
         public UsuariosController(IMapper mapper, IUsuariosService usuarioService)
@@ -22,6 +21,7 @@ namespace Escalas.API.Controllers
             _usuarioService = usuarioService;
         }
 
+        [AllowAnonymous]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] UsuarioModel model)
         {
@@ -33,15 +33,16 @@ namespace Escalas.API.Controllers
             Log.Information("Cadastrando usuario {Nome}", model.Username);
 
             var result = await _usuarioService.CadastrarAsync(usuario);
-            
+
             if (!result.IsValid)
                 return BadRequest(result.Notifications);
-            
+
             Log.Information("{Nome} inserido com sucesso", usuario.Username);
 
             return Ok(new { id = result.Object });
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UsuarioModel model)
         {
@@ -62,6 +63,26 @@ namespace Escalas.API.Controllers
             return Ok(result.Object);
         }
 
+        [Authorize(Roles = "Admin, Lider")]
+        [HttpPut("add-role")]
+        public async Task<IActionResult> AddRole([FromQuery] int usuarioId, [FromQuery] int cargoId)
+        {
+            Log.Information("Inserindo cargo a um usuário");
+
+            var result = await _usuarioService.AtribuirCargoAsync(usuarioId, cargoId);
+
+            if (result.Notfound)
+                return NotFound();
+
+            if (!result.Success)
+                return BadRequest(result.Notifications);
+
+            Log.Information("Cargo inserido com sucesso");
+
+            return Ok(new { id = result.Object });
+        }
+
+        [AllowAnonymous]
         [HttpPost("validate")]
         public IActionResult ValidateToken([FromBody] string token){
             

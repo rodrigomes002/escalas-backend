@@ -1,11 +1,9 @@
 ﻿using Dapper;
-using Escalas.Application.Mappings;
 using Escalas.Domain.Entities;
 using Escalas.Domain.Entities.Base;
 using Escalas.Domain.Interfaces;
 using Escalas.Infrastructure.Scripts;
 using Npgsql;
-using System.Text;
 
 namespace Escalas.Infrastructure.Repositories;
 

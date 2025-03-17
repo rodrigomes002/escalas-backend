@@ -15,6 +15,21 @@ public class UsuarioRepository : IUsuarioRepository
         _connectionStringConfiguration = connectionStringConfiguration;
     }
 
+    public async Task<int> AtualizarCargoUsuarioAsync(Usuario usuario, Cargo cargo)
+    {
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+
+        var sql = UsuarioScripts.UpdateCargoUsuario;
+
+        var parametros = new
+        {
+            id = usuario.Id,
+            id_cargo = cargo.Id
+        };
+
+        return await conexao.ExecuteAsync(sql, parametros);
+    }
+
     public async Task<int> CadastrarAsync(Usuario usuario)
     {
         await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
@@ -30,6 +45,15 @@ public class UsuarioRepository : IUsuarioRepository
         };
 
         return await conexao.QueryFirstOrDefaultAsync<int>(sql, parametros);
+    }
+
+    public async Task<Usuario> GetUsuarioByIdAsync(int id)
+    {
+        await using var conexao = new NpgsqlConnection(_connectionStringConfiguration.GetPostgresqlConnectionString());
+
+        var sql = UsuarioScripts.SelectUsuarioById;
+
+        return await conexao.QueryFirstOrDefaultAsync<Usuario>(sql, new { id });
     }
 
     public async Task<Usuario> GetUsuarioByUsernameAsync(string username)
